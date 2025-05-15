@@ -1,0 +1,146 @@
+@use '../../styles/scss/changeable.module.scss'as *;
+@use '../../styles/scss/mixins.module.scss'as *;
+@use "../../styles/scss/templates.module.scss"as *;
+
+@font-face {
+    font-family: 'Volja';
+    src: url('../../../public/fonts/volia/Volja-Regular.eot');
+    src: local('Volja-Regular'),
+        url('../../../public/fonts/volia/Volja-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../../public/fonts/volia/Volja-Regular.woff2') format('woff2'),
+        url('../../../public/fonts/volia/Volja-Regular.woff') format('woff'),
+        url('../../../public/fonts/volia/Volja-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer {
+    background: $colobg;
+}
+    
+.footerBlock {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.footerBlockSety {
+    margin: 1rem 0;
+}
+
+.blockSetyTitle {
+    text-align: center;
+    margin: 1rem auto;
+    @include adaptiv-font(48, 32);
+}
+
+.blockSety {
+    @extend %flex-center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.blockSetyIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 $grey;
+    top: 0;
+    transition-duration: 0.5s;
+    &:hover {
+        transform: scale(1.1);
+    }
+    &:active {
+        top: 2px;
+        box-shadow: 0 1px 0 $grey;
+    }
+}
+
+.footerBody{
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.footerBodyTitle {
+    font-family: 'Volja';
+    @include adaptiv-font(64, 32);
+}
+
+.footerBodySubtitle{
+    @include adaptiv-font(48, 16);
+}
+
+.footerBodyAdress {
+    @include adaptiv-font(32, 16);
+
+    Link {
+        color: $black;
+    }
+}
+
+.bodyAdress {
+    padding-bottom: 1rem;
+}
+
+.footerBodyTel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.telLogo{
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin: 0 5px 0 10px;
+}
+
+.footerMap {
+    border: 2px solid $black;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 854px) {
+    .footerBlockSety{
+        text-align: center;
+    }
+    .blockSetyTitle {
+        margin: 0 auto;
+    }
+    
+}
+
+@media (max-width: 821px) {
+
+    .footerBlock {
+        flex-direction: column;
+    }
+
+    .footerBlockSety {
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .footerMap {
+        order: 3;
+    }
+
+    .footerBlockSety {
+        margin-top: 1rem;
+    }
+
+    .footerMapBody {
+        width: 100%;
+    }
+
+}
+
+

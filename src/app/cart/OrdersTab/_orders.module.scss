@@ -1,0 +1,63 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.ordersWrapper {
+    padding: 20px;
+    max-width: 90%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.loading,
+.empty {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+}
+
+.orderCard {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.orderNumber {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.orderStatus,
+.orderDate,
+.orderTotal {
+    font-size: 16px;
+    margin: 4px 0;
+    color: #555;
+}
+
+.itemsTitle {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.itemsWrapper {
+    margin-top: 10px;
+}
+
+.item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-size: 15px;
+}

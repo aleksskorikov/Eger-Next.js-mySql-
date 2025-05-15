@@ -1,0 +1,21 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+.field,
+.formField {
+    @extend %flex-center;
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid $grey;
+    margin-top: 0.5rem;
+}
+
+.editableInput {
+    width: 80%;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 5px;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}

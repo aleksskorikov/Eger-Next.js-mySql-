@@ -1,0 +1,19 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.OnAll {
+    @extend %button-on-all;
+}
+
+@keyframes on-all {
+    0% {
+        top: 90%;
+        right: 1%;
+    }
+
+    100% {
+        top: 70%;
+        right: 1%;
+    }
+}

@@ -1,0 +1,33 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: inherit;
+    font-size: 2rem;
+    color: $home-marquee;
+    font-weight: bolder;
+    text-shadow: 3px 3px 15px $title-text-shadow;
+    padding: 10px 0;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}
+
+.marqueeContent {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

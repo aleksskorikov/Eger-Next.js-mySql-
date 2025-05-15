@@ -1,0 +1,45 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+
+.main {
+    background-color: $colorbg-body;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    gap: 1rem;
+    width: 30%;
+    margin-top: 2rem;
+}
+
+.listSubtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: $list-subtitle-bg;
+    padding: 1rem 0;
+}
+
+.adminBlock {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.message {
+    font-size: 2rem;
+}

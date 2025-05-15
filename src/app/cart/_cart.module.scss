@@ -1,0 +1,49 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+
+.tabsContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 1480px;
+    background-color: #e7d49e;
+}
+
+.tabHeaders {
+    display: flex;
+    border-bottom: 3px solid #ccc;
+}
+
+.tabButton {
+    padding: 10px 20px 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    transition: border-bottom 0.3s, color 0.3s;
+    margin:0 10px 5px;
+}
+
+.tabButton:hover {
+    color: #0073e6;
+}
+
+.active {
+    border-bottom: 3px solid #0073e6;
+    font-weight: bold;
+}
+
+.tabContent {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: $colorbg-body;
+    
+}
+
+.continueShoppingButton {
+    @extend %navbuttom;
+    width: 50%;
+    margin: 2rem auto 1rem;
+}

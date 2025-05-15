@@ -1,0 +1,75 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+
+.hanter,
+.fishing,
+.weapon,
+.tourizm {
+    border: 2px solid $black;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    @extend %flex-center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    background-color: $back-shadow;
+    padding: 0.5rem 1rem;
+    border: 2px solid $menu-color-border;
+    cursor: pointer;
+    &:hover{
+        background-color: $list-subtitle-bg;
+    }
+}
+
+.lists {
+    list-style: none;
+    border: 1px solid $menu-color-border;
+}
+
+.listTitle {
+    
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+    cursor: pointer;
+        
+}
+
+.list{
+    background-color: $list-title-bg;
+    border: 1px solid $menu-color-border;
+    padding: 0.5rem 0;
+    &:hover {
+            background-color: $list-subtitle-bg;
+        }
+}
+
+.listSubtitle{
+    font-size: 1.5rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.subcategoryItem{
+    list-style: disc;
+    padding: 0.5rem;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: $lists-list-color;
+
+    &:hover {
+        background-color: $form-btn-bg-hover;
+        color: $whitesmoke;
+    }
+}
+
+
+
+
+
+

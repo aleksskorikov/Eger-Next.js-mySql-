@@ -1,0 +1,101 @@
+%navbuttom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    transform: skew(-20deg);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: #BDB76B;
+    box-shadow: 0 5px 0 gray;
+    transition-duration: 1s;
+    transition: background-color 0.5s ease 0s;
+    position: relative;
+    top: 0;
+
+    &:hover {
+        background: #ece277;
+    }
+
+    &:active {
+        top: 3px;
+        box-shadow: 0 2px 0 rgb(11, 18, 11);
+    }
+}
+
+%button-on-all{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    z-index: 11;
+    top: 90%;
+    right: 1%;
+    background-image: url(../../../public/logo/all.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    border: 1px solid;
+    transition-duration: 1s;
+    animation-name: on-all;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+%form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    color: whitesmoke;
+}
+
+%flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%tabsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+%tabHeaders{
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 5px;
+}
+
+%tabButton{
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-bottom 0.3s, color 0.3s;
+    margin-right: 10px;
+    &:hover{
+        color: #0073e6;
+    }
+}
+
+%tabButtonActive{
+    border-bottom: 3px solid #0073e6;
+    font-weight: bold;
+}
+
+%tabContent{
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

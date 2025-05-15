@@ -1,0 +1,49 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Arial', sans-serif;
+
+    label {
+        font-weight: 600;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        align-self: flex-start;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+}

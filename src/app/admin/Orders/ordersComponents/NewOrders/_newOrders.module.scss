@@ -1,0 +1,10 @@
+@use '../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../styles/scss/templates.module.scss" as *;
+
+.orderBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

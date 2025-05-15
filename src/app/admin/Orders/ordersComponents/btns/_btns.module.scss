@@ -1,0 +1,30 @@
+@use '../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../styles/scss/templates.module.scss" as *;
+
+.acceptButton {
+    background-color: #22c55e;
+    color: #fff;
+
+    &:hover {
+        background-color: #16a34a;
+    }
+}
+
+.completeButton {
+    background-color: #3b82f6;
+    color: #fff;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}
+
+.cancelButton {
+    background-color: #ef4444;
+    color: #fff;
+
+    &:hover {
+        background-color: #dc2626;
+    }
+}

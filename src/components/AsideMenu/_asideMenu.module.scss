@@ -1,0 +1,51 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+
+.menuItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px;
+    background-color: inherit;
+}
+
+.menuLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 350px;
+    height: 30px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    transform: skew(-20deg);
+    font-size: 16px;
+    font-weight: 600;
+    background: #BDB76B;
+    box-shadow: 0 5px 0 gray;
+    transition-duration: 1s;
+    transition: background-color 0.5s ease 0s;
+    position: relative;
+    top: 0;
+
+    &:hover {
+        background: #ece277;
+    }
+
+    &:active {
+        top: 3px;
+        box-shadow: 0 2px 0 rgb(11, 18, 11);
+    }
+}
+
+
+.active {
+    width: 400px;
+    font-weight: bold;
+    color: $whitesmoke;
+    font-size: 20px;
+}

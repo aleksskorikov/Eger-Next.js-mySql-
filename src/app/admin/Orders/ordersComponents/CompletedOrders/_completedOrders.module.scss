@@ -1,0 +1,253 @@
+@use '../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../styles/scss/templates.module.scss" as *;
+
+
+.container {
+    max-width: 1470px;
+    margin: 20px auto;
+    padding: 0 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.summary {
+    font-size: 1rem;
+    color: #34495e;
+
+    span {
+        margin-left: 15px;
+        font-weight: 600;
+    }
+}
+
+.ordersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.orderCard {
+    width: 45%;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 4px 15px rgb(0 0 0 / 0.15);
+    }
+}
+
+.orderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h3 {
+        margin: 0;
+        font-weight: 700;
+        color: #34495e;
+    }
+
+    .date {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+    }
+
+    .orderTotal {
+        text-align: right;
+
+        span {
+            font-weight: 600;
+            margin-right: 6px;
+            color: #7f8c8d;
+        }
+
+        strong {
+            font-size: 1.3rem;
+            color: #27ae60;
+        }
+    }
+}
+
+.orderDetails {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+
+    >div {
+        flex: 1;
+    }
+}
+
+.customerInfo,
+.shippingInfo {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.05);
+
+    h4 {
+        margin-top: 0;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #2980b9;
+        border-bottom: 2px solid #2980b9;
+        padding-bottom: 4px;
+    }
+
+    p {
+        margin: 5px 0;
+        font-size: 0.95rem;
+        color: #2c3e50;
+
+        strong {
+            font-weight: 600;
+            color: #34495e;
+        }
+    }
+}
+
+/* Особый стиль для блока доставки */
+.shippingInfo p {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    strong {
+        flex-basis: 140px;
+    }
+}
+
+/* Секция товаров */
+.productsSection {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.05);
+
+    h4 {
+        margin-top: 0;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #2980b9;
+        border-bottom: 2px solid #2980b9;
+        padding-bottom: 4px;
+    }
+}
+
+.itemsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+
+    th,
+    td {
+        border: 1px solid #dfe6e9;
+        padding: 8px 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #ecf0f1;
+        font-weight: 600;
+        color: #34495e;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    tfoot tr {
+        background-color: #dff0d8;
+        font-weight: 700;
+        color: #27ae60;
+    }
+
+    .totalLabel {
+        text-align: right;
+    }
+
+    .totalValue {
+        font-size: 1.1rem;
+    }
+}
+
+/* Блок исполнителя */
+.staffInfo {
+    margin-top: 15px;
+    padding: 12px 15px;
+    background-color: #f1f8e9;
+    border-left: 5px solid #8bc34a;
+    border-radius: 0 6px 6px 0;
+    font-weight: 600;
+    color: #558b2f;
+}
+
+/* Загрузка */
+.loadingContainer,
+.errorContainer,
+.noOrders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #7f8c8d;
+    text-align: center;
+
+    img {
+        width: 120px;
+        margin-bottom: 20px;
+    }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ccc;
+    border-top-color: #2980b9;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refreshButton {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #1c5980;
+    }
+}

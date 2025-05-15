@@ -1,0 +1,63 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.section {
+    text-align: center;
+
+    .sectionTitle {
+        margin: 3% 0;
+        text-shadow: 3px 3px 30px $title-text-shadow;
+        font-family: $fontfamily-title;
+        font-weight: bold;
+        letter-spacing: 1rem;
+        text-transform: uppercase;
+        @include adaptiv-font(48, 16);
+    }
+
+    .sectionInfo {
+        display: flex;
+        align-items: center;
+        background: $info-color-bg;
+        border: 2px solid $info-color-border;
+        border-radius: 10px;
+        font-family: $fontfamily-data;
+        box-shadow: 10px 10px 25px 1px $info-color-box-shadow;
+    }
+
+    .sectionFoto {
+        flex: 0 0 60%;
+        height: 26rem;
+        background-image: url(../../../public/images/hanter-foto/hunting.webp);
+        background-position: center;
+        background-size: cover;
+        border: 2px solid $info-color-border;
+        border-radius: 10px;
+    }
+
+    .sectionText {
+        text-align: center;
+        flex: 1 1 auto;
+        padding: 2%;
+        @include adaptiv-font(24, 16);
+    }
+
+    .fishing {
+        background-image: url(../../../public/images/fishing-foto/fishing.svg);
+    }
+
+    .selfDefense {
+        background-image: url(../../../public/images/weapon-foto/self-defense.webp);
+    }
+
+    .tourism {
+        background-image: url(../../../public/images/tourizm-foto/turizm.svg);
+    }
+}
+
+.tourisma{
+        padding-bottom: 5rem;
+    }
+
+
+

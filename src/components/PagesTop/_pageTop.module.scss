@@ -1,0 +1,28 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.pageTop{
+    display: flex;
+    align-items: center;
+    height: 400px;
+    margin-top: 10px;
+    background-color: rgb(189, 183, 107, .3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.menuBlock{
+    width: 40%;
+}
+
+.imgBlock {
+    position: relative;
+    width: 90%;
+    height: 100%; 
+}
+
+.topImage {
+    object-fit: cover;
+    border-radius: 5px; 
+}

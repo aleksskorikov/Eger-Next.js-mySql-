@@ -1,0 +1,44 @@
+
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.slider {
+    position: relative;
+    padding: 0 3.75rem;
+    margin-top: 1rem;
+
+    .slickArrow {
+        font-size: 0;
+        position: absolute;
+        width: 2.5rem;
+        height: 4.4rem;
+        top: 40%;
+        z-index: 10;
+    }
+
+    .slickPrev,
+    .slickNext::before {
+        content: url(../../../../public/images/arrow.svg);
+    }
+
+    .slickPrev {
+        left: 0;
+        transform: rotateY(180deg);
+    }
+
+    .slickNext {
+        right: 0;
+        top: 45%;
+    }
+
+    ul{
+        position: relative;
+        li button:before{
+            font-size: 15px;
+        }
+    }
+}
+
+
+

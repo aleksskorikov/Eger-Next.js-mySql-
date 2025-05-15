@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Volja';
+    src: url('Volja-Regular.eot');
+    src: local('Volja-Regular'),
+        url('Volja-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Volja-Regular.woff2') format('woff2'),
+        url('Volja-Regular.woff') format('woff'),
+        url('Volja-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Volja';
+    src: url('Volja-Black.eot');
+    src: local('Volja-Black'),
+        url('Volja-Black.eot?#iefix') format('embedded-opentype'),
+        url('Volja-Black.woff2') format('woff2'),
+        url('Volja-Black.woff') format('woff'),
+        url('Volja-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

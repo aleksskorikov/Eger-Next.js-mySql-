@@ -1,0 +1,74 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.main {
+    background-color: $colorbg-body;
+}
+
+.container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px 5rem 15px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menuTitle {
+    text-align: center;
+    text-shadow: 3px 3px 30px $title-text-shadow;
+    margin-top: 2rem;
+    @include adaptiv-font(64, 32);
+}
+
+.menuSubtitle {
+    text-align: center;
+    text-shadow: 3px 3px 30px $title-text-shadow;
+    margin-top: 2rem;
+    @include adaptiv-font(40, 28);
+}
+
+.productsList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.messageText{
+    font-size: 18px;
+    color: $editable-btn-cancellation-hover;
+}
+
+.paginationText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 1rem;
+    color: $add-product-cancellation;
+}
+
+
+@media (max-width: 769px) {
+    .menu {
+        width: auto;
+        margin: 2rem 1%;
+    }
+}
+
+@media (max-width: 550px) {
+    .card,
+    .card-two {
+        width: 10rem;
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+    }
+}

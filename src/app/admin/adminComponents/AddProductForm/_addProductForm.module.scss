@@ -1,0 +1,54 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+
+.form {
+    width: 100%;
+    border: 6px solid $grey;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btnsBlock {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem auto;
+}
+
+.formSubtitle {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.btnOk,
+.cancellation {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.cancellation {
+    background: $add-product-cancellation;
+
+    &:hover {
+        background: $red;
+        color: $whitesmoke;
+    }
+}
+
+.btnOk {
+    background: $buy-btn-bg-hover;
+
+    &:hover {
+        background: $buy-btn-bg;
+        color: $whitesmoke;
+    }
+}
+

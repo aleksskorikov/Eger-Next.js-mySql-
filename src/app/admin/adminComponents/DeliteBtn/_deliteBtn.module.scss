@@ -1,0 +1,18 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+.deleteButton {
+    width: 8rem;
+    height: 2rem;
+    background-color: $editable-btn-cancellation;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $editable-btn-cancellation-hover;
+        color: $whitesmoke;
+    }
+}

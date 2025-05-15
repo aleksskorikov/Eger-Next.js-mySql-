@@ -1,0 +1,35 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.paginationBtn {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px;
+    background-color: inherit;
+    border: 2px solid $sing-btn-bg;
+    border-radius: 8px;
+    top: 0;
+    transition-duration: 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:active {
+        top: 2px;
+        box-shadow: 0 1px 0 $grey;
+    }
+}
+
+.paginationText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 1rem;
+}

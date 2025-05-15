@@ -1,0 +1,55 @@
+@use '../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../styles/scss/templates.module.scss" as *;
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+.blockBtns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.addFormBtn{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    transform: skew(-20deg);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    &:hover{
+        background-color: #45a049;
+    }
+}
+
+.formsWrapper{
+    width: 100%;
+}
+
+.formsWrapperBtn{
+    display: block;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    transform: skew(-20deg);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    margin: 1rem auto 1rem;
+
+    &:hover {
+        background-color: #45a049;
+    }
+}

@@ -1,0 +1,175 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+@font-face {
+    font-family: 'Volja';
+    src: url('../../../public/fonts/volia/Volja-Regular.eot');
+    src: local('Volja-Regular'),
+        url('../../../public/fonts/volia/Volja-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../../public/fonts/volia/Volja-Regular.woff2') format('woff2'),
+        url('../../../public/fonts/volia/Volja-Regular.woff') format('woff'),
+        url('../../../public/fonts/volia/Volja-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+.container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.header{
+    background: $colobg;
+    box-shadow: $color-box-shadow;
+}
+
+.headerBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logoBlock{
+    width: 10rem;
+}
+.logoImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.titleBlock{
+    text-align: center;
+    font-family: $fontfamily-title;
+}
+
+.title{
+    display: block;
+    max-height: 80px;
+    font-family: 'Volja';
+    @include adaptiv-font(110, 48);
+}
+
+.subtitle{
+    @include adaptiv-font(45, 24);
+}
+
+.itemsBlock{
+    font-family: $fontfamily-data;
+}
+
+.dataBlock{
+    display: flex;
+    align-items: center
+}
+.city,
+.address,
+.tel{
+    display: flex;
+    align-items: center;
+    @include adaptiv-font(32, 16);
+}
+
+.telImg{
+    margin: 3px 1rem;
+    border-radius: 10px;
+}
+
+.socialBlock{
+    @extend %flex-center;
+    gap: 2rem;
+    padding-top: 1rem;
+}
+
+.icon{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 $grey;
+    top: 0;
+    transition-duration: 0.5s;
+    &:hover {
+        transform: scale(1.1);
+    }
+    &:active {
+        top: 2px;
+        box-shadow: 0 1px 0 $grey;
+    }
+}
+
+
+
+.iconTel{
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin: 0 5px 0 10px;
+}
+
+.btn{
+    background-color: inherit;
+}
+
+
+.authBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+
+@media (max-width: 1025px) {
+
+    .headerBlock {
+        justify-content: space-around;
+    }
+
+    .socialBlock {
+        padding-top: 1rem;
+    }
+
+    .dataBlock {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .adress {
+        margin: 0.8rem 0;
+    }
+    
+}
+
+@media (max-width: 821px) {
+    .headerBlock {
+        &__sety-icons {
+            width: 30px;
+        }
+    }
+
+}
+
+@media (max-width: 431px) {
+
+        .headerBlock {
+            flex-direction: column;
+        }
+
+        .headerBlock {
+            &__sety-icons {
+                width: 40px;
+            }
+        }
+
+        .tel {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+}

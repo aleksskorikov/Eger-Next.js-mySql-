@@ -1,0 +1,37 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.authGreeting{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.authBtn{
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: inherit;
+    top: 0;
+        transition-duration: 0.5s;
+    
+        &:hover {
+            transform: scale(1.1);
+        }
+    
+        &:active {
+            top: 2px;
+            box-shadow: 0 1px 0 $grey;
+        }
+}
+
+.greetingText{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.span{
+    font-size: 16px;
+}

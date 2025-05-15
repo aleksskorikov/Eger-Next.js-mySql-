@@ -1,0 +1,62 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+
+.listBlock{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem auto 1rem;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.listTable{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #e8e9eb;
+    margin-bottom: 1rem;
+    
+    thead {
+        background-color: #909193;
+        color: $whitesmoke;
+        border: 1px solid gray;
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid gray;
+    
+            &.span {
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #6b7280;
+            }
+        }
+    }
+    
+    tbody {
+        tr {
+            border: 1px solid gray;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background 0.2s ease-in-out;
+    
+            &:hover {
+                background-color: #f9fafb;
+            }
+    
+            td {
+                border: 1px solid gray;
+                padding: 12px;
+                vertical-align: middle;
+            }
+        }
+    }
+}

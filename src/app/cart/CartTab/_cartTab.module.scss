@@ -1,0 +1,125 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.main {
+    background-color: $colorbg-body;
+    background-color: $colorbg-body;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url(../../../../public//logo/fon.png);
+        background-position: center 30%;
+        // background-repeat: no-repeat repeat;
+        background-size: 22%;
+        opacity: 0.05;
+        z-index: -1;
+    }
+}
+
+.title{
+    text-align: center;
+    margin: 1rem 0 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.subTitle{
+    text-align: center;
+    margin: 1rem 0 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.cartProductsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+    margin: 0 auto 2rem;
+    padding: 1rem 2rem;
+    border: 3px solid $form-bg;
+    border-radius: 10px;
+}
+
+.cartProduct{
+    border: 1.5px solid $form-bg;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.productTitle{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.productItemsBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.productItem,
+.itemSpan{
+    display: flex;
+    // align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.productDeliteBtn{
+    width: 100px;
+    height: 30px;
+    background-color: $editable-btn-cancellation-hover;
+    border-radius: 8px;
+    color: $whitesmoke;
+    text-transform: uppercase;
+}
+
+.qtyBtn, .qtyBtnMin{
+    background-color: inherit;
+    margin: 0 5px;
+    color: $sing-btn-bg;
+}
+
+.qtyBtnMin{
+    margin-top: 4px;
+}
+
+.qtyBtn{
+    margin-top: 3px;
+}
+
+.cardSubtiile{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $back-title-color;
+}
+
+.orderBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 28px;
+    margin: 1.5rem auto;
+    background-color: $overlay-bg;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    &:hover{
+        background-color: $sing-btn-bg;
+        color: $whitesmoke;
+    }
+}

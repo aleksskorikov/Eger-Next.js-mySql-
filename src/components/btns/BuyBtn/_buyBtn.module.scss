@@ -1,0 +1,50 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.btnPoz {
+    @extend %flex-center;
+    margin-top: 3rem;
+
+}
+
+.buyBtn {
+    position: relative;
+    z-index: 10;
+    width: 10rem;
+    height: 3rem;
+    transform: skew(-20deg);
+    background: $buy-btn-bg;
+    border-radius: 8px;
+    color: $whitesmoke;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    &:hover {
+        background: $buy-btn-bg-hover;
+    }
+}
+
+.successMessage{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    background-color: $list-title-bg;
+    border-radius: 10px;
+    border: 2px solid $info-color-border;
+    z-index: 10;
+}
+
+.successMessageText{
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: $menu-color-border;
+}

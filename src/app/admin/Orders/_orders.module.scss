@@ -1,0 +1,24 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.tabsContainer {
+    @extend %tabsContainer;
+}
+
+.tabHeaders {
+    @extend %tabHeaders;
+}
+
+.tabButton {
+    @extend %tabButton;
+}
+
+.active {
+    @extend %tabButtonActive;
+}
+
+.tabContent {
+    @extend %tabContent;
+}
+

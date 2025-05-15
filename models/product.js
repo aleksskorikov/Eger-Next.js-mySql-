@@ -1,0 +1,73 @@
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../utils/db';
+
+// ProductGroup
+const ProductGroup = sequelize.define('ProductGroup', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    name: { type: DataTypes.STRING, allowNull: false }
+}, { tableName: 'product_groups', timestamps: false });
+
+// Category
+const Category = sequelize.define('Category', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    group_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: ProductGroup, key: 'id' } },
+    name: { type: DataTypes.STRING, allowNull: false }
+}, { tableName: 'categories', timestamps: false });
+
+
+const Product = sequelize.define('Product', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    category_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Category, key: 'id' } },
+    name: { type: DataTypes.STRING, allowNull: false },
+    price: { type: DataTypes.DECIMAL(10, 2) },
+    description: { type: DataTypes.TEXT },
+    status: { type: DataTypes.BOOLEAN, defaultValue: false }, // ✅ добавлено
+    }, {
+    tableName: 'products',
+    timestamps: false
+    });
+
+
+// ProductImage
+const ProductImage = sequelize.define('ProductImage', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    product_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Product, key: 'id' } },
+    image_url: { type: DataTypes.STRING }
+}, { tableName: 'product_images', timestamps: false });
+
+// ProductDescription
+const ProductDescription = sequelize.define('ProductDescription', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    product_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Product, key: 'id' } },
+    description_text: { type: DataTypes.TEXT },
+    description_order: { type: DataTypes.INTEGER }
+}, { tableName: 'product_descriptions', timestamps: false });
+
+// Associations
+ProductGroup.hasMany(Category, { foreignKey: 'group_id' });
+Category.belongsTo(ProductGroup, { foreignKey: 'group_id' });
+
+Category.hasMany(Product, { foreignKey: 'category_id' });
+Product.belongsTo(Category, { foreignKey: 'category_id' });
+
+Product.hasMany(ProductImage, { foreignKey: 'product_id' });
+ProductImage.belongsTo(Product, { foreignKey: 'product_id' });
+
+Product.hasMany(ProductDescription, { foreignKey: 'product_id' });
+ProductDescription.belongsTo(Product, { foreignKey: 'product_id' });
+
+export {
+    sequelize,
+    ProductGroup,
+    Category,
+    Product,
+    ProductImage,
+    ProductDescription
+};
+
+
+
+
+
+
+
