@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styles from "../EditProductForm/_editProductForm.module.scss"
 
 export default function StatusCheckbox({ productId, initialStatus, onStatusChange }) {
     const [status, setStatus] = useState(initialStatus);
@@ -46,14 +47,15 @@ export default function StatusCheckbox({ productId, initialStatus, onStatusChang
     };
 
     return (
-        <label>
+        <label >
             <input
                 type="checkbox"
                 checked={status ?? false}
                 onChange={(e) => handleToggle(e.target.checked)}
                 disabled={loading}
+                className={styles.checkbox}
             />
-            Активный товар
+            Товар, який не можна купити онлайн, має активний статус
             {loading && <span> (обновление...)</span>}
             {error && <span style={{ color: 'red' }}>Ошибка: {error}</span>}
         </label>

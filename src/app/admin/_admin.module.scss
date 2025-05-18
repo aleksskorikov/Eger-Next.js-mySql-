@@ -3,12 +3,11 @@
 @use "../../styles/scss/templates.module.scss" as *;
 
 
-.main{
-    background-color: blue;
-}
+
 
 .tabsContainer {
     @extend %tabsContainer;
+    height: 100%;
 }
 
 .tabHeaders {
@@ -17,6 +16,7 @@
 
 .tabButton {
     @extend %tabButton;
+    display: flex;
 }
 
 .active {

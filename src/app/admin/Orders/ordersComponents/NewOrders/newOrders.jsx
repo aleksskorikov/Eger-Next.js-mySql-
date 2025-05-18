@@ -7,7 +7,11 @@ const NewOrders = ({ orders, onAccept, onCancel, onComplete }) => {
     const [completedOrders, setCompletedOrders] = useState([]);
 
     if (!orders || orders.length === 0) {
-        return <p>No orders available!</p>;
+        return (
+            <div className={styles.messageBlock}>
+                <p className={styles.message}>На даний момент немає нових замовлень</p>
+            </div>
+        )
     }
 
     return (

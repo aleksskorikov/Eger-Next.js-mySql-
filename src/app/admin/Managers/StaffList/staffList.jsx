@@ -39,7 +39,8 @@ const StaffList = ({ onSelectStaff }) => {
     };
 
     return (
-        <div className={styles.listBlock}>
+        <div className={styles.container}>
+            <div className={styles.listBlock}>
             <h1 className={styles.title}>Сотрудники компании</h1>
             <table className={styles.listTable}>
                 <thead>
@@ -84,6 +85,8 @@ const StaffList = ({ onSelectStaff }) => {
                 </tbody>
             </table>
         </div>
+        </div>
+        
     );
 };
 

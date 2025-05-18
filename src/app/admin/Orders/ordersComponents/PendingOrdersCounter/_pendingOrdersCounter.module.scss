@@ -1,0 +1,13 @@
+@use '../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../styles/scss/templates.module.scss" as *;
+
+.count{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.active{
+    color: $add-product-cancellation;
+}

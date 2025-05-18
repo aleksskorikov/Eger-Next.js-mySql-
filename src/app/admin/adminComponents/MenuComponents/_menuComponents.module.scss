@@ -17,12 +17,12 @@
     text-align: center;
     font-size: 2rem;
     font-weight: bolder;
-    background-color: $back-shadow;
+    background-color: #75b95c;
     padding: 0.5rem 1rem;
     border: 2px solid $menu-color-border;
     cursor: pointer;
     &:hover{
-        background-color: $list-subtitle-bg;
+        background-color: #97d97f;
     }
 }
 
@@ -41,11 +41,11 @@
 }
 
 .list{
-    background-color: $list-title-bg;
+    background-color: #8cdd6e;
     border: 1px solid $menu-color-border;
     padding: 0.5rem 0;
     &:hover {
-            background-color: $list-subtitle-bg;
+            background-color: #b2d2a6;
         }
 }
 

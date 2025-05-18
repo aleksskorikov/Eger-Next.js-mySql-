@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import styles from '../../Managers/AddManagersForm/_managersForm.module.scss';
+import styles from './_userEditForm.module.scss';
 
 const UserEditForm = ({ user, onSave, onCancel }) => {
     const [formData, setFormData] = useState({ ...user });
@@ -25,7 +25,7 @@ const UserEditForm = ({ user, onSave, onCancel }) => {
 
         if (!response.ok) throw new Error('Помилка при оновленні користувача');
         const updatedUser = await response.json();
-        onSave(updatedUser); // Повертаємо оновлені дані в AdminUsers
+        onSave(updatedUser); 
         } catch (err) {
         alert(err.message);
         } finally {
@@ -38,13 +38,11 @@ const UserEditForm = ({ user, onSave, onCancel }) => {
         <h2>Редагування користувача</h2>
         <input name="first_name" value={formData.first_name || ''} onChange={handleChange} placeholder="Ім'я" />
         <input name="last_name" value={formData.last_name || ''} onChange={handleChange} placeholder="Прізвище" />
+        <input name="middle_name" value={formData.middle_name || ''} onChange={handleChange} placeholder="По батькові"/>    
         <input name="phone" value={formData.phone || ''} onChange={handleChange} placeholder="Телефон" />
+        <input name="email" type="email" value={formData.email || ''} onChange={handleChange} placeholder="Email"/>    
         <input name="city" value={formData.city || ''} onChange={handleChange} placeholder="Місто" />
-        <select name="role" value={formData.role} onChange={handleChange}>
-            <option value="client">Клієнт</option>
-            <option value="manager">Менеджер</option>
-            <option value="admin">Адмін</option>
-        </select>
+    
         <div>
             <button type="submit" disabled={saving}>💾 Зберегти</button>
             <button type="button" onClick={onCancel}>Скасувати</button>

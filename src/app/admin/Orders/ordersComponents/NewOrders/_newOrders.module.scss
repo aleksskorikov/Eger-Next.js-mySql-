@@ -7,4 +7,17 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    background-color: #e4f0df;
+}
+
+.messageBlock{
+    height: 100%;
+    background-color: #e4f0df;
+}
+
+.message{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem;
 }

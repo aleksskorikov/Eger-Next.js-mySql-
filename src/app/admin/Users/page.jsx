@@ -64,20 +64,19 @@ const AdminUsers = ({ onSelectUser }) => {
 
     return (
         <div className={styles.listBlock}>
-            <h1 className={styles.title}>Сотрудники компанії</h1>
-            
-            {selectedUser && (
-                <UserEditForm
-                    user={selectedUser}
-                    onSave={handleSaveEdit}
-                    onCancel={handleCancelEdit}
-                />
-                )}
-
+            <h1 className={styles.title}>Клієнти</h1>
             <table className={styles.listTable}>
                 <thead>
                     <tr>
-                        <th>ID</th><th>Ім'я</th><th>Прізвище</th><th>Телефон</th><th>Місто</th><th>Роль</th><th>Дії</th>
+                        <th>ID</th>
+                        <th>Ім'я</th>
+                        <th>Прізвище</th>
+                        <th>По батькові</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                        <th>Місто</th>
+                        <th>Дії</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -87,9 +86,10 @@ const AdminUsers = ({ onSelectUser }) => {
                                 <td>{user.id}</td>
                                 <td>{user.first_name}</td>
                                 <td>{user.last_name}</td>
+                                <td>{user.middle_name}</td>
                                 <td>{user.phone}</td>
+                                <td>{user.email}</td>
                                 <td>{user.city}</td>
-                                <td>{user.role}</td>
                                 <td>
                                     <button onClick={(e) => {
                                         e.stopPropagation();
@@ -103,6 +103,14 @@ const AdminUsers = ({ onSelectUser }) => {
                     )}
                 </tbody>
             </table>
+
+            {selectedUser && (
+                <UserEditForm
+                    user={selectedUser}
+                    onSave={handleSaveEdit}
+                    onCancel={handleCancelEdit}
+                />
+                )}
         </div>
     );
 };

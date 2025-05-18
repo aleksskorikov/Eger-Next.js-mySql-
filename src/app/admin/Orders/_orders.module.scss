@@ -20,5 +20,9 @@
 
 .tabContent {
     @extend %tabContent;
+    background-color: #e4f0df;
+    min-height: 300px;
 }
-
+.managerTab {
+    background-color: inherit;
+}

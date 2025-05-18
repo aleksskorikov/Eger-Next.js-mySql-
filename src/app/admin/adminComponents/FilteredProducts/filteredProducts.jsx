@@ -5,8 +5,9 @@ import styles from "./_filteredProducts.module.scss";
 import DeleteBtn from "../DeliteBtn/deliteBtn";
 import EditProductForm from "../EditProductForm/EditProductForm";
 import Image from "next/image";
+import ProductAnalytics from "../../Analytics/ProductAnalitycs/ProductAnalitycs";
 
-const FilteredProducts = ({ products }) => {
+const FilteredProducts = ({ products, onProductUpdate }) => {
     const [productList, setProductList] = useState(products || []);
     const [editingProduct, setEditingProduct] = useState(null);
 
@@ -30,13 +31,18 @@ const FilteredProducts = ({ products }) => {
         setProductList((prev) => prev.filter(product => product.id !== deletedProductId));
     };
 
-    const handleSave = (updatedProduct) => {
+    const handleSave = (updatedProductResponse) => {
+        const updatedProduct = updatedProductResponse.product;
+        
         setProductList((prev) =>
             prev.map((product) =>
                 product.id === updatedProduct.id ? updatedProduct : product
             )
         );
         setEditingProduct(null);
+        if (onProductUpdate) {
+            onProductUpdate(updatedProduct);
+        }
     };
 
     const getImageUrl = (imagePath) => {
@@ -58,6 +64,7 @@ const FilteredProducts = ({ products }) => {
 
                     return (
                         <div key={index} className={styles.productCard}>
+                            <h3 className={styles.productName}>{product.name}</h3>
                             <div className={styles.imageSlider}>
                                 {productImages.length > 0 ? (
                                     productImages.map((img, i) => (
@@ -65,8 +72,8 @@ const FilteredProducts = ({ products }) => {
                                             <Image
                                                 src={getImageUrl(img.image_url)}
                                                 alt={`${product.name} - ${i + 1}`}
-                                                width={250}
-                                                height={300}
+                                                width={150}
+                                                height={150}
                                                 className={styles.productImage}
                                                 onError={(e) => {
                                                     e.target.onerror = null;
@@ -88,7 +95,6 @@ const FilteredProducts = ({ products }) => {
                                 )}
                             </div>
 
-                            <h3 className={styles.productName}>{product.name}</h3>
                             <p className={styles.productDescription}>{product.description || "Описание отсутствует"}</p>
 
                             <ol className={styles.productFeatures}>
@@ -100,15 +106,23 @@ const FilteredProducts = ({ products }) => {
                             </ol>
 
                             <p className={styles.productPrice}>Цена: {product.price} грн</p>
+
                             <div className={styles.blockBtn}>
                                 <button onClick={() => handleEditClick(product)} className={styles.changeBtn}>
                                     Изменить товар
                                 </button>
                                 <DeleteBtn productId={product.id} onDeleteSuccess={handleDelete} />
                             </div>
-                            {editingProduct && (
-                                <EditProductForm product={editingProduct} onSave={handleSave} imageIds={editingProduct.ProductImages?.map(img => img.id) || []}/>
+
+                            {editingProduct?.id === product.id && (
+                                <EditProductForm
+                                    product={editingProduct}
+                                    onSave={handleSave}
+                                    onCancel={() => setEditingProduct(null)} 
+                                    imageIds={editingProduct.ProductImages?.map(img => img.id) || []}
+                                />
                             )}
+                            <ProductAnalytics productId={product.id} />
                         </div>
                     );
                 })}

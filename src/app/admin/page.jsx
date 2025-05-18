@@ -10,10 +10,11 @@ import { useAuth } from '../../components/users/authContext';
 import styles from './_admin.module.scss';
 import PendingOrdersCounter from './Orders/ordersComponents/PendingOrdersCounter/pendingOrdersCounter';
 import AnalyticsBot from './AnalyticsBot/AnalyticsBot';
+import Analitycs from "./Analytics/analitycs"
 
 const Page = () => {
     const { user } = useAuth(); 
-    const [activeTab, setActiveTab] = useState('Товари');
+    const [activeTab, setActiveTab] = useState('adminProducts');
 
     const handleTabClick = (tab) => setActiveTab(tab);
 
@@ -33,53 +34,62 @@ const Page = () => {
             <div className={styles.tabHeaders}>
                 {isAdmin && (
                     <button
-                        className={`${styles.tabButton} ${activeTab === 'Товари' ? styles.active : ''}`}
-                        onClick={() => handleTabClick('Товари')}
+                        className={`${styles.tabButton} ${activeTab === 'adminProducts' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('adminProducts')}
                     >
-                        Admin Products
+                        Товари
                     </button>
                 )}
                 {isAdmin && (
                     <button
-                        className={`${styles.tabButton} ${activeTab === 'Співробітники' ? styles.active : ''}`}
-                        onClick={() => handleTabClick('Співробітники')}
+                        className={`${styles.tabButton} ${activeTab === 'managers' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('managers')}
                     >
-                        Managers
+                        Співробітники
                     </button>
                 )}
                 {(isAdmin || isManager) && (
                     <button
-                        className={`${styles.tabButton} ${activeTab === 'Замовлення' ? styles.active : ''}`}
-                        onClick={() => handleTabClick('Замовлення')}
+                        className={`${styles.tabButton} ${activeTab === 'orders' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('orders')}
                     >
-                        Orders
+                        Замовлення
                         <PendingOrdersCounter/>
                     </button>
                 )}
                 {(isAdmin || isManager) && (
                     <button
-                        className={`${styles.tabButton} ${activeTab === 'Клієнти' ? styles.active : ''}`}
-                        onClick={() => handleTabClick('Клієнти')}
+                        className={`${styles.tabButton} ${activeTab === 'users' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('users')}
                     >
-                        Users
+                        Клієнти
                     </button>
                 )}
                 {(isAdmin || isManager) && (
                     <button
-                        className={`${styles.tabButton} ${activeTab === 'Аналітика II' ? styles.active : ''}`}
-                        onClick={() => handleTabClick('Аналітика II')}
+                        className={`${styles.tabButton} ${activeTab === 'ii' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('ii')}
                     >
-                        AI
+                        Аналітика II
+                    </button>
+                )}
+                {(isAdmin || isManager) && (
+                    <button
+                        className={`${styles.tabButton} ${activeTab === 'analitics' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('analitics')}
+                    >
+                        Аналітика 
                     </button>
                 )}
             </div>
 
             <div className={styles.tabContent}>
-                {activeTab === 'Товари' && isAdmin && <AdminProducts />}
-                {activeTab === 'Співробітники' && isAdmin && <Managers />}
-                {activeTab === 'Замовлення' && (isAdmin || isManager) && <Orders />}
-                {activeTab === 'Клієнти' && (isAdmin || isManager) && <Users />}
-                {activeTab === 'Аналітика II' && (isAdmin || isManager) && <AnalyticsBot />}
+                {activeTab === 'adminProducts' && isAdmin && <AdminProducts />}
+                {activeTab === 'managers' && isAdmin && <Managers />}
+                {activeTab === 'orders' && (isAdmin || isManager) && <Orders />}
+                {activeTab === 'users' && (isAdmin || isManager) && <Users />}
+                {activeTab === 'ii' && (isAdmin || isManager) && <AnalyticsBot />}
+                {activeTab === 'analitics' && (isAdmin || isManager) && <Analitycs />}
             </div>
         </div>
     );

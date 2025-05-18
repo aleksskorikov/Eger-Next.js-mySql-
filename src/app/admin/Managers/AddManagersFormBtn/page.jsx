@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import StaffForm from '../../AddManagersForm/page';
+import StaffForm from '../AddManagersForm/page';
 import styles from "./_manadgersFormBtns.module.scss";
-import StaffList from '../staffList';
+import StaffList from '../StaffList/staffList';
 
 const StaffManagement = () => {
     const [isFormVisible, setFormVisible] = useState(false);
@@ -38,11 +38,10 @@ const StaffManagement = () => {
 
     return (
         <div className={styles.formContainer}>
+            <StaffList onSelectStaff={handleSelectStaff} />
             <div className={styles.blockBtns}>
                 <button onClick={handleAddStaffClick} className={styles.addFormBtn}>Додати нового співробітника</button>
             </div>
-            <StaffList onSelectStaff={handleSelectStaff} />
-            
             {isFormVisible && (
                 <div className={styles.formsWrapper}>
                     <StaffForm 

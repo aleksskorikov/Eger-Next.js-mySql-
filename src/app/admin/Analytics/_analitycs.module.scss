@@ -1,0 +1,12 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e4f0df;
+    padding: 2rem;
+    min-height: 300px;
+}

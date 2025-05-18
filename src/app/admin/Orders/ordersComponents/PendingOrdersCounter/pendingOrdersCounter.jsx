@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import styles from "./_pendingOrdersCounter.module.scss"
 
 export default function PendingOrdersCounter() {
     const [count, setCount] = useState(0);
@@ -34,9 +35,10 @@ export default function PendingOrdersCounter() {
     }, []);
 
     return (
-        <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
+        <div className={`${styles.count} ${count > 0 ? styles.active : ''}`}>
             {count}
         </div>
     );
+    
 }
 

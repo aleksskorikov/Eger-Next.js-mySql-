@@ -2,7 +2,14 @@
 @use '../../../../styles/scss/mixins.module.scss' as *;
 @use "../../../../styles/scss/templates.module.scss" as *;
 
-
+.container{
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
 .listBlock{
     display: flex;
     align-items: center;

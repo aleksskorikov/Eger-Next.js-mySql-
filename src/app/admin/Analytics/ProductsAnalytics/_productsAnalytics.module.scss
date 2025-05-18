@@ -1,0 +1,89 @@
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
+
+.openBtn {
+    padding: 8px 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.openBtn:hover {
+    background-color: #005bb5;
+}
+
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.closeBtn {
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+    color: #333;
+}
+
+.error {
+    color: red;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.subTitle{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.filters {
+    margin: 10px 0;
+}
+
+.select {
+    margin-left: 10px;
+    padding: 5px; }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+}

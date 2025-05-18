@@ -88,10 +88,10 @@ const Orders = () => {
           Нові замовлення
         </button>
         <button
-          className={`${styles.tab} ${activeTab === 'manager' ? styles.active : ''}`}
+          className={`${styles.managerTab} ${activeTab === 'manager' ? styles.active : ''}`}
           onClick={() => setActiveTab('manager')}
         >
-          Менеджер: {user?.firstName} {user?.last_name}
+          Менеджер: {user?.firstName} {user?.lastName}
         </button>
       </div>
 

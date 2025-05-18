@@ -28,7 +28,8 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
           order: d.description_order,
         })) || [],
         images: product.ProductImages || [],
-        status: product.status || false, 
+        status: product.status || false,
+        id: product.id,
       });
     }
   }, [product]);
@@ -52,10 +53,20 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
     }));
   };
 
-  const handleDeleteImage = async (imageId, imageUrl) => {
-    if (!imageId || !imageUrl) return;
-    if (!confirm('Удалить изображение?')) return;
 
+  const handleDeleteImage = async (imageId, imageUrl) => {
+    if (!imageId) return; 
+  
+    if (String(imageId).startsWith('new-')) {
+      setFormData(prev => ({
+        ...prev,
+        images: prev.images.filter(img => img.id !== imageId),
+      }));
+      return;
+    }
+  
+    if (!confirm('Удалить изображение?')) return;
+  
     try {
       const response = await fetch(`/api/products?id=${imageId}&action=delete-image`, {
         method: 'DELETE',
@@ -63,24 +74,23 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Ошибка при удалении изображения');
       }
-
-      const updatedImages = formData.images.filter(img => img.id !== imageId);
-
+  
       setFormData(prev => ({
         ...prev,
-        images: updatedImages,
+        images: prev.images.filter(img => img.id !== imageId),
       }));
-
+  
     } catch (error) {
       console.error('Ошибка при удалении изображения:', error);
       alert(error.message || 'Не удалось удалить изображение');
     }
   };
+  
 
   const handleAddImageClick = (index) => {
     if (fileInputRefs.current[index]) {
@@ -147,9 +157,10 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
         throw new Error(`Ошибка HTTP! статус: ${response.status}, сообщение: ${errorText}`);
       }
 
-      const savedProduct = await response.json();
-      onSave(savedProduct);
-
+      const updatedProductResponse = await response.json();
+  
+      onSave(updatedProductResponse);
+      onCancel();
       const formDataObj = {};
 formDataToSend.forEach((value, key) => {
   formDataObj[key] = value;
@@ -268,14 +279,14 @@ formDataToSend.forEach((value, key) => {
         </div>
 
         <div className={styles.formGroup}>
-          <h3>Характеристики товара</h3>
+          <h3 className={styles.formLable}>Характеристики товара</h3>
           {formData.features.map((feature, index) => (
             <div key={feature.id || index} className={styles.featureItem}>
               <input
                 type="text"
                 value={feature.text || ''}
                 onChange={(e) => handleFeatureChange(index, e.target.value)}
-                className={styles.featureInput}
+                className={styles.formInput}
                 placeholder={`Характеристика ${index + 1}`}
               />
             </div>

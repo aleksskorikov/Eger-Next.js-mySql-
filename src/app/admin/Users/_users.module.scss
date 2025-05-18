@@ -2,3 +2,88 @@
 @use '../../../styles/scss/mixins.module.scss' as *;
 @use "../../../styles/scss/templates.module.scss" as *;
 
+.listBlock {
+    padding: 2rem;
+    background-color: #e4f0df;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-family: "Segoe UI", sans-serif;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.listTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    th,
+    td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+    }
+
+    th {
+        background-color: #f0f0f5;
+        color: #444;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+
+    tr:hover {
+        background-color: #fdfdfd;
+        cursor: pointer;
+    }
+
+    tr.selected {
+        background-color: #e6f7ff !important;
+    }
+
+    td button {
+        background: #ff4d4f;
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: #d9363e;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .listTable {
+        font-size: 0.85rem;
+
+        th,
+        td {
+            padding: 0.75rem;
+        }
+
+        td button {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+        }
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+}

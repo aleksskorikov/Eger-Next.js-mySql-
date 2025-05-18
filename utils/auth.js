@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'; 
 
-// utils/auth.js
 export function getUserFromToken(req) {
     const token = req.headers.authorization?.split(' ')[1];
 

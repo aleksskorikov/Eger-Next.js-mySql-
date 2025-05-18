@@ -1,6 +1,6 @@
-@use '../../../../../styles/scss/changeable.module.scss' as *;
-@use '../../../../../styles/scss/mixins.module.scss' as *;
-@use "../../../../../styles/scss/templates.module.scss" as *;
+@use '../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../styles/scss/templates.module.scss" as *;
 
 .formContainer{
     display: flex;
@@ -24,9 +24,9 @@
     padding: 12px 24px;
     transform: skew(-20deg);
     font-size: 16px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 4px;
+    margin-bottom: 2rem;
     &:hover{
         background-color: #45a049;
     }
