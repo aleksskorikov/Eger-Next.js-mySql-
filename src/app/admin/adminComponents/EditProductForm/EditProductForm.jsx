@@ -135,7 +135,6 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
       formDataToSend.append('category_id', product.category_id);
       formDataToSend.append('status', formData.status ? 'true' : 'false');
 
-
       formData.features.forEach((feature, index) => {
         formDataToSend.append(`features[${index}][text]`, feature.text);
         formDataToSend.append(`features[${index}][order]`, feature.order || index + 1);
@@ -162,9 +161,10 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
       onSave(updatedProductResponse);
       onCancel();
       const formDataObj = {};
-formDataToSend.forEach((value, key) => {
-  formDataObj[key] = value;
-});
+      
+      formDataToSend.forEach((value, key) => {
+        formDataObj[key] = value;
+      });
 
     } catch (error) {
       console.error('Ошибка при сохранении товара:', error);

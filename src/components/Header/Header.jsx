@@ -11,6 +11,7 @@ import Telegramm from "../../../public/logo/telegram.svg";
 import MailBtn from "../btns/MailBtn";
 import CardIcon from "../../../public/logo/cartIcon.png"
 import { useAuth } from "../../components/users/authContext";
+import CartCounterBadge from "@/src/app/cart/CartCounterBadge/CartCounterBadge";
 
 
 const Header = () => {
@@ -58,7 +59,8 @@ const { user } = useAuth();
             <div className={styles.authBlock}>
               <AuthBtn />
             <Link href={user ? "/cart" : "/login"}>
-              <Image src={CardIcon} alt="Cart" className={styles.icon} />
+                <Image src={CardIcon} alt="Cart" className={styles.icon} />
+                <CartCounterBadge />
             </Link>
             </div>
           </div>

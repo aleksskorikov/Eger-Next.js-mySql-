@@ -1,4 +1,3 @@
-// utils/handleOrderAction.js
 export const handleOrderAction = async ({ url, method, data, token, onSuccess, onError }) => {
     try {
         const headers = {

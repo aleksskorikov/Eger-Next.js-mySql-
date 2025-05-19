@@ -43,10 +43,6 @@ const AdminUsers = ({ onSelectUser }) => {
         fetchUserData();
     }, []);
 
-    // const handleRowClick = (user) => {
-    //     onSelectUser(user); 
-    // };
-
     const handleDelete = async (id) => {
         if (!confirm("Ви впевнені, що хочете видалити цього користувача?")) return;
 

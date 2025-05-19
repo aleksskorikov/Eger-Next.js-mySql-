@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import useAuthUser from '../../../../pages/api/users/useAuthUser';
 import styles from './_orders.module.scss';

@@ -65,7 +65,4 @@ const Weapon = ({ onCategoryClick }) => {
     );
 };
 
- 
-
-
 export default Weapon;

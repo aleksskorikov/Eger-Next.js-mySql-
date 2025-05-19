@@ -10,19 +10,16 @@ const ProductAnalytics = ({ productId }) => {
     const [data, setData] = useState([]);
 
         useEffect(() => {
-            console.log('Переданный productId:', productId);
         if (!productId) return;
 
         const fetchAnalytics = async () => {
         try {
             const response = await fetch(`/api/analytics/${productId}`);
-            console.log('Статус ответа API:', response.status);
             if (!response.ok) {
             throw new Error(`Ошибка: ${response.status}`);
             }
 
             const data = await response.json();
-            console.log('Данные с API:', data);
             setAnalytics(data);
         } catch (err) {
             setError(err.message);

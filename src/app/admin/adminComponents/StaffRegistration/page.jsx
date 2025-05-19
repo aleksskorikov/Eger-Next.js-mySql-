@@ -60,7 +60,6 @@ const StaffLogin = ({ onClose }) => {
             form.reset();
             onClose();
         } catch (err) {
-            // console.error("Login Error:", err);
             setErrorMessage(err.message);
             localStorage.removeItem('token');
         }

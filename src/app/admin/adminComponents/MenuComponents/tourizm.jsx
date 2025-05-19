@@ -65,7 +65,4 @@ const Tourizm = ({ onCategoryClick }) => {
     );
 };
 
- 
-
-
 export default Tourizm;

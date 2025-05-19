@@ -65,9 +65,6 @@ const Hanter = ({ onCategoryClick }) => {
     );
 };
 
- 
-
-
 export default Hanter;
 
 

@@ -4,7 +4,6 @@ import React, { useState, useCallback, useMemo } from "react";
 import EditableField from "../EditableField/editableField";
 import EditableImageField from "../EditableImageField/editableImageField";
 import styles from "./_addProductForm.module.scss";
-import StatusCheckbox from "../StatusCheckbox/StatusCheckbox";
 
 const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
     const [newProduct, setNewProduct] = useState({
@@ -49,25 +48,25 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
         const formData = new FormData();
 
         if (!selectedCategory?.category) {
-            alert("Пожалуйста, выберите категорию!");
+            alert("Будь ласка, оберіть категорію!");
             setIsSubmitting(false);
             return;
         }
 
         if (!newProduct.name.trim()) {
-            alert("Пожалуйста, введите название товара!");
+            alert("Будь ласка, введіть назву товару!");
             setIsSubmitting(false);
             return;
         }
 
         if (!newProduct.description.trim()) {
-            alert("Пожалуйста, введите описание товара!");
+            alert("Будь ласка, введіть опис товару!");
             setIsSubmitting(false);
             return;
         }
 
         if (!newProduct.price || isNaN(parseFloat(newProduct.price))) {
-            alert("Пожалуйста, укажите правильную цену товара!");
+            alert("Будь ласка, вкажіть правильну ціну!");
             setIsSubmitting(false);
             return;
         }
@@ -89,7 +88,7 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
 
         try {
             await onAddProduct(formData);  
-            alert("Товар успешно добавлен!");
+            alert("Товар успішно доданий!");
             setNewProduct({
                 name: "",
                 description: "",
@@ -99,8 +98,8 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
                 status: true, 
             });
         } catch (error) {
-            console.error("Ошибка при добавлении товара:", error);
-            alert(`Не удалось добавить товар: ${error.message}`);
+            console.error("Помилка при додаванні товару:", error);
+            alert(`Неможливо додати товар: ${error.message}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -110,11 +109,11 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
         <div className={styles.form}>
             {selectedCategory && (
                 <p className={styles.formSubtitle}>
-                    Выбранная категория: <strong>{selectedCategory.name}</strong>
+                    Вибрана категорія: <strong>{selectedCategory.name}</strong>
                 </p>
             )}
 
-            <p className={styles.formSubtitle}>Основное фото</p>
+            <p className={styles.formSubtitle}>Основне фото</p>
             <EditableImageField
                 currentImage={newProduct.images[0]}
                 onSave={handleImageChange}
@@ -122,7 +121,7 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
 
             {Array.from({ length: 9 }).map((_, index) => (
                 <div key={index}>
-                    <p className={styles.formSubtitle}>Дополнительное фото {index + 1}</p>
+                    <p className={styles.formSubtitle}>Додаткове фото {index + 1}</p>
                     <EditableImageField
                         currentImage={newProduct.images[index + 1]}
                         onSave={handleImageChange}
@@ -130,22 +129,21 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
                 </div>
             ))}
 
-            <p className={styles.formSubtitle}>Название товара</p>
+            <p className={styles.formSubtitle}>Назва товару</p>
             <EditableField value={newProduct.name} onSave={(value) => handleFieldChange("name", value)} />
 
-            {/* Поле для выбора статуса товара */}
             <div className={styles.formSubtitle}>
                 <label>
                     Активный товар
                     <input
                         type="checkbox"
                         checked={newProduct.status}
-                        onChange={(e) => handleFieldChange("status", e.target.checked)} // Изменяем статус
+                        onChange={(e) => handleFieldChange("status", e.target.checked)} 
                     />
                 </label>
             </div>
 
-            <p className={styles.formSubtitle}>Описание товара</p>
+            <p className={styles.formSubtitle}>Опис товару</p>
             <EditableField value={newProduct.description} onSave={(value) => handleFieldChange("description", value)} />
 
             {Array.from({ length: 20 }).map((_, index) => (
@@ -155,7 +153,7 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
                 </div>
             ))}
 
-            <p className={styles.formSubtitle}>Цена товара</p>
+            <p className={styles.formSubtitle}>Ціна товару</p>
             <EditableField value={newProduct.price} onSave={(value) => handleFieldChange("price", value)} />
 
             <div className={styles.btnsBlock}>
@@ -173,7 +171,7 @@ const AddProductForm = ({ onAddProduct, onCancel, selectedCategory }) => {
                     className={styles.cancellation}
                     disabled={isSubmitting}
                 >
-                    Отмена
+                    Скасування
                 </button>
             </div>
         </div>

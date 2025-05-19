@@ -14,7 +14,7 @@ const AddProductBtn = ({ onAddProduct, selectedCategory }) => {
                 onClick={() => setShowForm(true)}
                 disabled={!selectedCategory?.category}
             >
-                Добавить товар
+                Додати товар
             </button>
 
             {showForm && (

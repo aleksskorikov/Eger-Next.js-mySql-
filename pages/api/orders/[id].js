@@ -18,18 +18,11 @@ export default async function handler(req, res) {
 
     if (req.method === 'PATCH') {
       const { status, staff_id } = req.body;
-
       const order = await findOrderById(id);
       order.status = status || order.status;
       if (staff_id) order.staff_id = staff_id;
       console.log('Updating order:', order); 
       await order.save();
-      console.log('Creating completed order with data:', {
-        order_id: order.id,
-        total_price: order.total_price,
-        staff_id: order.staff_id,
-        completed_at: new Date(),
-      });
 
       const completedOrder = await CompletedOrder.create({
         order_id: order.id,
@@ -46,18 +39,10 @@ export default async function handler(req, res) {
 
     if (req.method === 'PUT') {
       const { status, staff_id } = req.body;
-
       const order = await findOrderById(id);
       order.status = status || order.status;
       if (staff_id) order.staff_id = staff_id;
-      console.log('Updating order:', order); 
       await order.save();
-      console.log('Creating completed order with data:', {
-        order_id: order.id,
-        total_price: order.total_price,
-        staff_id: order.staff_id,
-        completed_at: new Date(),
-      });
 
       return res.status(200).json({ message: 'Order updated', order });
     }

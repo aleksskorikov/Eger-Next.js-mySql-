@@ -1,8 +1,7 @@
-
 'use client';
+
 import { useRouter } from 'next/navigation'; 
 import styles from "../_cart.module.scss";
-
 
 const ContinueShoppingButton = () => {
   const router = useRouter();

@@ -81,7 +81,6 @@ const handleSignIn = async (e) => {
         form.reset();
         onClose();  
     } catch (err) {
-        // console.error("Login Error:", err.message);
         alert(err.message);
     }
 };
@@ -93,7 +92,6 @@ const handleSignIn = async (e) => {
                 className={`${styles.containers} ${isSignUp ? styles.rightPanelActive : ''}`}
                 ref={formContainerRef}
             >
-                {/* Sign Up */}
                 <div className={`${styles.containerForm} ${styles.containerSignup}`}>
                     <form className={styles.form} id="form1" onSubmit={handleSignUp}>
                         <h2 className={styles.formTitle}>Sign Up</h2>
@@ -104,7 +102,6 @@ const handleSignIn = async (e) => {
                     </form>
                 </div>
 
-                {/* Sign In */}
                 <div className={`${styles.containerForm} ${styles.containerSignin}`}>
                     <form className={styles.form} id="form2" onSubmit={handleSignIn}>
                         <h2 className={styles.formTitle}>Увійти</h2>
@@ -114,7 +111,6 @@ const handleSignIn = async (e) => {
                     </form>
                 </div>
 
-                {/* Overlay */}
                 <div className={styles.containerOverlay}>
                     <div className={styles.overlay}>
                         <div className={`${styles.overlayPanel} ${styles.overlayLeft}`}>

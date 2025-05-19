@@ -46,7 +46,6 @@ export default async function handler(req, res) {
             token,
         });
     } catch (err) {
-        // console.error('Login error:', err);
         return res.status(500).json({ message: 'Помилка сервера' });
     }
 }

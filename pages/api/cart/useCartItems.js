@@ -33,7 +33,6 @@ const useCartItems = () => {
       }
 
       const data = await res.json();
-      console.log('Данные корзины получены:', data);
 
       if (!Array.isArray(data.items)) {
         console.warn('Некорректный формат данных корзины');

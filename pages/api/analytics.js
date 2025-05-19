@@ -11,12 +11,8 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Query is required' });
     }
 
-    console.log('Получен запрос:', query);
-
     try {
-        console.log('Генерация SQL-запроса...');
         const aiResponse = await generateSQLFromText(query);
-        console.log('Ответ от OpenRouter:', aiResponse);
 
         let finalSql = '';
         const blockMatch = aiResponse.sql.match(/```sql\s*([\s\S]+?)\s*```/i);
@@ -33,10 +29,7 @@ export default async function handler(req, res) {
             throw new Error('Не удалось извлечь корректный SQL-запрос из ответа');
         }
 
-        console.log('Извлечённый SQL-запрос:', finalSql);
-
         const [results] = await sequelize.query(finalSql);
-        console.log('Результаты SQL-запроса:', results);
 
         res.status(200).json({
             sql: finalSql,

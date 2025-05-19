@@ -47,7 +47,6 @@ export default async function handler(req, res) {
             id: staff.id 
         });
     } catch (error) {
-        // console.error('Staff login error:', error);
         return res.status(500).json({ message: 'Серверна помилка' });
     }
 }

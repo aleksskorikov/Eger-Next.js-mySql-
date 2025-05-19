@@ -1,11 +1,10 @@
-// utils/schemaBuilder.js
 import { sequelize } from './db';
 
 export async function getDatabaseSchema() {
     const [tables] = await sequelize.query('SHOW TABLES');
     const schema = {};
 
-    const tableKey = Object.keys(tables[0])[0]; // например, 'Tables_in_eger'
+    const tableKey = Object.keys(tables[0])[0]; 
 
     for (const row of tables) {
         const tableName = row[tableKey];

@@ -65,7 +65,4 @@ const Fishing = ({ onCategoryClick }) => {
     );
 };
 
- 
-
-
 export default Fishing;

@@ -8,15 +8,12 @@ export default async function handler(req, res) {
     const processInput = (data) => {
         const cleaned = { ...data };
 
-        // Обробка дат
         const dateFields = ['birth_date', 'passport_issued_date', 'employment_date', 'dismissal_date'];
         for (const field of dateFields) {
             if (!cleaned[field] || cleaned[field] === 'Invalid date') {
                 cleaned[field] = null;
             }
         }
-
-        // Хешування пароля
         if (cleaned.password) {
             cleaned.password_hash = bcrypt.hashSync(cleaned.password, 10);
             delete cleaned.password;

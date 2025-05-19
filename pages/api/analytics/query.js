@@ -1,5 +1,3 @@
-// pages/api/analytics/all.js
-
 import { sequelize } from '../../../utils/db';
 
 export default async function handler(req, res) {

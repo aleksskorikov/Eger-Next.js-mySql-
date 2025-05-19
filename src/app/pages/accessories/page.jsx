@@ -19,7 +19,7 @@ import MenuImg5 from '../../../../public/images/menu img/acsesuars5.jpg';
 import MenuImg6 from '../../../../public/images/menu img/acsesuars6.jpg';
 import MenuImg7 from '../../../../public/images/menu img/acsesuars7.jpg';
 import MenuImg8 from '../../../../public/images/menu img/acsesuars8.jpg';
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/acsessories.webp";
 
 const Accessories = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

@@ -1,4 +1,3 @@
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/css/globals.css";
 import styles from "../styles/scss/_globals.module.scss";
