@@ -36,8 +36,8 @@ const { user } = useAuth();
 
           <div className={styles.itemsBlock}>
             <div className={styles.dataBlock}>
-              <p className={styles.city}>м. Запоріжжя</p>
-              <p className={styles.address}>вул. Базарна 14б</p>
+              <p className={styles.city}>м.Запоріжжя,</p>
+              <p className={styles.address}>вул.Базарна 14б</p>
               <p className={styles.tel}>
                 <Image src={Telefon} alt="Телефон"  className={styles.iconTel}/>
                 055 555 55 55

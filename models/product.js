@@ -19,6 +19,8 @@ const Product = sequelize.define('Product', {
     price: { type: DataTypes.DECIMAL(10, 2) },
     description: { type: DataTypes.TEXT },
     status: { type: DataTypes.BOOLEAN, defaultValue: false },
+    isOnSale: { type: DataTypes.BOOLEAN, defaultValue: false,},
+    sale_price: { type: DataTypes.FLOAT, allowNull: true,},
     }, {
     tableName: 'products',
     timestamps: false

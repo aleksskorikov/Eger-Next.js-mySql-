@@ -16,6 +16,7 @@
 }
 
 .tabButton {
+    // display: flex;
     padding: 10px 20px 5px;
     border: none;
     background-color: transparent;
@@ -23,6 +24,14 @@
     cursor: pointer;
     transition: border-bottom 0.3s, color 0.3s;
     margin:0 10px 5px;
+}
+
+.cartBtns{
+    display: flex;
+}
+
+.cartBtn{
+    display: flex;
 }
 
 .tabButton:hover {
@@ -46,4 +55,8 @@
     @extend %navbuttom;
     width: 50%;
     margin: 2rem auto 1rem;
+}
+
+.myBadgeWrapper{
+    margin: -5px 0 0px 2px;
 }

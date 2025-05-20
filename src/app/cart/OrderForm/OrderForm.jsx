@@ -36,6 +36,10 @@ const OrderForm = ({ onSubmit, cartItems }) => {
         };
 
         delete finalData.departmentCustom;
+        console.log('Данные для отправки заказа:', {
+            ...finalData,
+            cartItems,
+        });
 
         const token = localStorage.getItem('token');
 

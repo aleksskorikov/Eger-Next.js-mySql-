@@ -32,6 +32,7 @@ const BuyBtn = ({ product }) => {
                 user_id: user.id,
                 product_id: product.id,
                 quantity: 1,
+                price: product.price 
             };
 
             const res = await fetch(url, {

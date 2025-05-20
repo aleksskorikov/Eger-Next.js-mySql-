@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './_productCard.module.scss';
 import ImgAlt from "../../../public/images/hanter-foto/imgAlt.jpg"
 
-const ProductCard = ({ product, pageName }) => {
+const ProductCard = ({ product}) => {
     const imageUrl = product.ProductImages?.[0]?.image_url || ImgAlt;
     const description = product.ProductDescriptions
         ?.sort((a, b) => a.description_order - b.description_order)
@@ -23,7 +23,16 @@ const ProductCard = ({ product, pageName }) => {
                 />
             </div>
             <h3 className={styles.productName}>{product.name}</h3>
-            <p className={styles.productPrice}>Ціна: {product.price} грн</p>
+            <p className={styles.productPrice}>
+                {product.isOnSale && product.sale_price ? (
+                    <>
+                    <span className={styles.salePrice}>🔥Ціна по акції: {product.sale_price} грн</span>{' '}
+                    <span className={styles.originalPrice}><s>{product.price} грн</s></span>
+                    </>
+                ) : (
+                    <>Цена: {product.price} грн</>
+                )}
+            </p>
         </Link>
     );
 };

@@ -120,8 +120,16 @@ const Product = () => {
                     </div>
                     </div>
                     
-
-                    <p className={styles.productsPrice}>Ціна: {product.price} грн</p>
+                    <p className={styles.productPrice}>
+                        {product.isOnSale && product.sale_price ? (
+                            <>
+                            <span className={styles.salePrice}>🔥Ціна по акції: {product.sale_price} грн</span>{' '}
+                            <span className={styles.originalPrice}><s>{product.price} грн</s></span>
+                            </>
+                        ) : (
+                            <>Цена: {product.price} грн</>
+                        )}
+                    </p>
                 </div>
                 
                 {user ? (
@@ -129,8 +137,7 @@ const Product = () => {
                         <BuyBtn product={{
                             id: product.id,
                             name: product.name,
-                            price: product.price,
-                            discount: product.discount_price || 0
+                            price: product.sale_price ? product.sale_price : product.price
                         }} />
                     ) : (
                         <div className={styles.unavailableMessage}>

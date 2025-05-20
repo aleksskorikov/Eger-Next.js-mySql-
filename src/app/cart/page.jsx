@@ -7,6 +7,7 @@ import CartTab from './CartTab/page.jsx';
 import OrdersTab from './OrdersTab/page.jsx';
 import styles from "./_cart.module.scss";
 import ContinueShoppingButton from './CartTab/ContinueShoppingButton.jsx';
+import CartCounterBadge from './CartCounterBadge/CartCounterBadge.jsx';
 
 const CartPage = () => {
   const { user } = useAuth();
@@ -19,9 +20,12 @@ const CartPage = () => {
   return (
     <div className={styles.tabsContainer}>
       <div className={styles.tabHeaders}>
-        <div >
-          <button onClick={() => setActiveTab('cart')} className={`${styles.tabButton} ${activeTab === 'cart' ? styles.active : ''}`}>
+        <div className={styles.cartBtns}>
+          <button onClick={() => setActiveTab('cart')} className={`${styles.tabButton} ${styles.cartBtn} ${activeTab === 'cart' ? styles.active : ''}`}>
             🛒 Корзина
+            <div className={styles.myBadgeWrapper}>
+              <CartCounterBadge />
+            </div>
           </button>
           <button onClick={() => setActiveTab('orders')} className={`${styles.tabButton} ${activeTab === 'orders' ? styles.active : ''}`}>
             📦 Мої замовлення

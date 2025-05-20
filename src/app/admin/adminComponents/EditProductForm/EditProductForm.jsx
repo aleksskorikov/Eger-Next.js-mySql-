@@ -4,6 +4,8 @@ import styles from "./_editProductForm.module.scss";
 import StatusCheckbox from "../StatusCheckbox/StatusCheckbox"; 
 
 const EditProductForm = ({ product, onSave, onCancel }) => {
+  const [isOnSale, setIsOnSale] = useState(false);
+  const [salePrice, setSalePrice] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -32,6 +34,8 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
         id: product.id,
       });
     }
+    setIsOnSale(!!product.sale_price);
+    setSalePrice(product.sale_price || '');
   }, [product]);
 
   const handleInputChange = (e) => {
@@ -134,6 +138,8 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
       formDataToSend.append('price', formData.price);
       formDataToSend.append('category_id', product.category_id);
       formDataToSend.append('status', formData.status ? 'true' : 'false');
+      formDataToSend.append('isOnSale', isOnSale ? 'true' : 'false');
+
 
       formData.features.forEach((feature, index) => {
         formDataToSend.append(`features[${index}][text]`, feature.text);
@@ -145,6 +151,16 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
           formDataToSend.append('images', img.file);
         }
       });
+
+      const formDataObj = {};
+
+      formDataToSend.forEach((value, key) => {
+        formDataObj[key] = value;
+      });
+
+      if (isOnSale && salePrice) {
+        formDataToSend.append('sale_price', salePrice);
+      }
 
       const response = await fetch(`/api/products?id=${product.id}`, {
         method: 'PUT',
@@ -160,11 +176,6 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
   
       onSave(updatedProductResponse);
       onCancel();
-      const formDataObj = {};
-      
-      formDataToSend.forEach((value, key) => {
-        formDataObj[key] = value;
-      });
 
     } catch (error) {
       console.error('Ошибка при сохранении товара:', error);
@@ -221,6 +232,30 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
             className={styles.formInput}
           />
         </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.formLable}>
+          <input
+            type="checkbox"
+            checked={isOnSale}
+              onChange={(e) => setIsOnSale(e.target.checked)}
+              className={styles.checkbox}
+          />
+          Акційний товар
+        </label>
+
+        {isOnSale && (
+          <input
+            type="number"
+            value={salePrice}
+            onChange={(e) => setSalePrice(parseFloat(e.target.value))}
+              placeholder="Акційна ціна"
+              className={styles.formInput}
+          />
+        )}
+
+      </div>
+        
 
         <div className={styles.formGroup}>
           <label className={styles.formLable}>Статус</label>

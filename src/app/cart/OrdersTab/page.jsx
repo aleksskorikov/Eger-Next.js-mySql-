@@ -57,13 +57,14 @@ const OrdersTab = () => {
             <h3 className={styles.orderNumber}>Замовлення №{order.id}</h3>
             {/* <p className={styles.orderStatus}>Статус: {order.status}</p> */}
             <p className={styles.orderStatus}>
-  Статус: {
-    order.status === 'pending' ? 'в очікуванні' :
-    order.status === 'processing' ? 'в обробці' :
-    order.status === 'completed' ? 'завершено' :
-    order.status
-  }
-</p>
+              Статус: {
+                order.status === 'pending' ? 'в очікуванні' :
+                order.status === 'processing' ? 'в обробці' :
+                order.status === 'completed' ? 'завершено' :
+                order.status === 'cancelled' ? 'скасовано' :
+                order.status
+              }
+            </p>
 
             <p className={styles.orderDate}>Дата: {new Date(order.created_at).toLocaleDateString()}</p>
             <p className={styles.orderTotal}>Сума: {order.total_price} грн</p>

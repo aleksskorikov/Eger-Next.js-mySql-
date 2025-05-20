@@ -47,13 +47,14 @@ export default function StatusCheckbox({ productId, initialStatus, onStatusChang
     };
 
     return (
-        <label >
+        <label className={styles.checkboxLable}>
             <input
                 type="checkbox"
                 checked={status ?? false}
                 onChange={(e) => handleToggle(e.target.checked)}
                 disabled={loading}
                 className={styles.checkbox}
+                
             />
             Товар, який не можна купити онлайн, має активний статус
             {loading && <span> (обновление...)</span>}

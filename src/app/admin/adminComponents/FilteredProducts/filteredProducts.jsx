@@ -105,7 +105,16 @@ const FilteredProducts = ({ products, onProductUpdate }) => {
                                     ))}
                             </ol>
 
-                            <p className={styles.productPrice}>Цена: {product.price} грн</p>
+                            <p className={styles.productPrice}>
+                                {product.isOnSale && product.sale_price ? (
+                                    <>
+                                    <span className={styles.salePrice}>Цена по акции: {product.sale_price} грн</span>{' '}
+                                    <span className={styles.originalPrice}><s>{product.price} грн</s></span>
+                                    </>
+                                ) : (
+                                    <>Цена: {product.price} грн</>
+                                )}
+                            </p>
 
                             <div className={styles.blockBtn}>
                                 <button onClick={() => handleEditClick(product)} className={styles.changeBtn}>

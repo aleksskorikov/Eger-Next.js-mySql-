@@ -67,14 +67,15 @@
 .productSliderItem {
     @extend %flex-center;
     border: 5px solid $colobg;
-    border-radius: 1rem;
+    border-radius: 10px;
     background: $menu-color-bg;
-    padding: 1rem 1rem;
-    max-height: 500px;
+    height: 500px;
 }
 
 .productSliderImage {
     width: 100%;
+    height: 490px;
+    border-radius: 6px;
 }
 
 
@@ -90,12 +91,25 @@
     
 }
 
-.productsPrice {
+.productPrice {
     text-align: center;
-    font-size: 2.5rem;
     margin-top: 2rem;
+    color: $form-bg;
+    @include adaptiv-font(36, 24);
+}
+
+.salePrice{
+    text-align: center;
+    margin: 2rem 10px 0 0;
     color: $red;
     @include adaptiv-font(36, 24);
+}
+
+.originalPrice{
+    text-align: center;
+    margin-top: 2rem;
+    color: $form-bg;
+    @include adaptiv-font(28, 24);
 }
 
 .description{

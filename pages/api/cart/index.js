@@ -37,10 +37,18 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: "Данные отсутствуют" });
       }
 
+      const product = await Product.findByPk(product_id);
+      if (!product) {
+        return res.status(404).json({ message: "Товар не найден" });
+      }
+
+      const priceToUse = product.isOnSale ? product.sale_price : product.price;
+
       await Cart.create({
         user_id,
         product_id,
         quantity: quantity || 1,
+        price: priceToUse
       });
 
       res.status(200).json({ message: "Товар добавлен в корзину" });
@@ -52,29 +60,56 @@ export default async function handler(req, res) {
     try {
       const { user_id, product_id, quantity } = req.body;
 
-      if (!user_id || !product_id) {
-        return res.status(400).json({ message: "Необхідні дані відсутні" });
+      if (!user_id || !product_id || !quantity) {
+        return res.status(400).json({ message: "Недостаточно данных для обновления" });
       }
 
-      const existingItem = await Cart.findOne({
-        where: { user_id, product_id }
+      const cartItem = await Cart.findOne({ where: { user_id, product_id } });
+
+      if (!cartItem) {
+        return res.status(404).json({ message: "Товар в корзине не найден" });
+      }
+
+      const product = await Product.findByPk(product_id);
+      if (!product) {
+        return res.status(404).json({ message: "Товар не найден" });
+      }
+
+      cartItem.quantity = quantity;
+      cartItem.price = product.isOnSale ? product.sale_price : product.price; 
+      await cartItem.save();
+
+      res.status(200).json({ message: "Количество товара обновлено" });
+    } catch (err) {
+      console.error("Ошибка при обновлении товара в корзине:", err);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+  } else if (method === 'DELETE') {
+    try {
+      const { user_id, productIds } = req.body;
+
+      if (!user_id || !productIds || !Array.isArray(productIds) || productIds.length === 0) {
+        return res.status(400).json({ message: "Недостаточно данных для удаления" });
+      }
+
+      const deletedCount = await Cart.destroy({
+        where: {
+          user_id,
+          product_id: productIds, 
+        }
       });
 
-      if (existingItem) {
-        existingItem.quantity += quantity || 1;
-        await existingItem.save();
-        return res.status(200).json({ message: "Кількість товару оновлена" });
-      } else {
-        return res.status(404).json({ message: "Товар не знайдено у корзині" });
+      if (deletedCount === 0) {
+        return res.status(404).json({ message: "Товары в корзине не найдены" });
       }
-    } catch (error) {
-      console.error("PUT error:", error);
-      res.status(500).json({ message: "Помилка сервера", error: error.message });
+
+      res.status(200).json({ message: `Удалено товаров: ${deletedCount}` });
+    } catch (err) {
+      console.error("Ошибка при удалении товаров из корзины:", err);
+      res.status(500).json({ message: "Ошибка сервера при удалении" });
     }
-  }
-  
-  else {
-    res.setHeader('Allow', ['GET', 'POST', 'PUT']);
+  } else {
+    res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
     res.status(405).end(`Метод ${method} не разрешён`);
-  } 
-}  
+  }
+}

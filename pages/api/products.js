@@ -149,7 +149,7 @@ async function handlePutRequest(req, res, skipStatus) {
     return res.status(400).json({ message: 'ID товара обязателен' });
   }
 
-  const { name, description, price, category_id, status, features } = req.body;
+  const { name, description, price, category_id, status, features, isOnSale, sale_price  } = req.body;
 
   if (!name || !category_id || !price) {
     return res.status(400).json({ message: 'Название, категория и цена обязательны' });
@@ -167,11 +167,20 @@ async function handlePutRequest(req, res, skipStatus) {
       return res.status(404).json({ message: 'Товар не найден' });
     }
 
+    const parsedIsOnSale = parseBoolean(isOnSale);
+const parsedSalePrice = sale_price ? parseFloat(sale_price.toString().replace(',', '.').replace(/\s/g, '')) : null;
+
+if (sale_price && isNaN(parsedSalePrice)) {
+  return res.status(400).json({ message: 'Неверный формат цены со скидкой' });
+}
+
     const updateData = {
       name,
       description: description || product.description,
       price: formattedPrice,
       category_id,
+      isOnSale: parsedIsOnSale,
+      sale_price: parsedSalePrice,
       ...(skipStatus === 'true' ? {} : { status }) 
     };
 
@@ -327,7 +336,9 @@ async function handlePostRequest(req, res) {
       description: description || '',
       price: formattedPrice,
       category_id,
-      status: parseBoolean(status), 
+      status: parseBoolean(status),
+      isOnSale: isOnSale || false,
+      sale_price: sale_price || null,
     });
 
     if (Array.isArray(list)) {

@@ -73,6 +73,9 @@
     align-items: center;
     @include adaptiv-font(32, 16);
 }
+.city{
+    margin-right: 8px;
+}
 
 .telImg{
     margin: 3px 1rem;

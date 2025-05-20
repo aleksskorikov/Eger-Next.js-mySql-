@@ -32,31 +32,29 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Failed to load orders' });
         }
     }
-    
-
     if (req.method === 'POST') {
         try {
             const { cartItems, deliveryMethod, ...orderData } = req.body;
-
+    
             if (!cartItems || cartItems.length === 0) {
                 return res.status(400).json({ error: 'Cart is empty' });
             }
-
+    
             const totalPrice = cartItems.reduce((sum, item) => {
-                const price = parseFloat(item.Product?.price);
+                const price = parseFloat(item.price); 
                 const quantity = parseInt(item.quantity, 10);
-
+    
                 if (isNaN(price) || isNaN(quantity)) {
                     throw new Error(`Некорректная цена или количество для товара с product_id ${item.product_id}`);
                 }
-
+    
                 return sum + price * quantity;
             }, 0);
-
+    
             if (isNaN(totalPrice)) {
                 return res.status(400).json({ error: 'Invalid cart items, cannot calculate total price' });
             }
-
+    
             const newOrder = await sequelize.transaction(async (t) => {
                 const order = await Order.create({
                     ...orderData,
@@ -64,7 +62,7 @@ export default async function handler(req, res) {
                     total_price: totalPrice,
                     delivery_method: deliveryMethod,
                 }, { transaction: t });
-
+    
                 await Promise.all(
                     cartItems.map(async (item) => {
                         const product = await Product.findByPk(item.product_id);
@@ -76,26 +74,27 @@ export default async function handler(req, res) {
                             order_id: order.id,
                             product_id: item.product_id,
                             quantity: item.quantity,
-                            price: product.price,
+                            price: item.price,
                         }, { transaction: t });
                     })
                 );
-
+    
                 await Cart.destroy({
                     where: { user_id: user.id },
                     transaction: t
                 });
-
+    
                 return order;
             });
-
+    
             res.status(201).json({ success: true, orderId: newOrder.id });
-
+    
         } catch (error) {
             console.error('Order creation failed:', error);
             res.status(500).json({ error: error.message || 'Server error' });
         }
-    } else {
+    }
+    else {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 }
