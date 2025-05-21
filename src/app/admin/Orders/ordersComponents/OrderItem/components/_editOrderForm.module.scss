@@ -1,0 +1,46 @@
+@use '../../../../../../styles/scss/changeable.module.scss' as *;
+@use '../../../../../../styles/scss/mixins.module.scss' as *;
+@use "../../../../../../styles/scss/templates.module.scss" as *;
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.editForm input,
+.editForm select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.saveButton {
+    background-color: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cancelButton {
+    background-color: #ccc;
+    color: #333;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

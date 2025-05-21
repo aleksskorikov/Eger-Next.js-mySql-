@@ -85,6 +85,7 @@ const CompletedOrders = () => {
                         <div className={styles.orderHeader}>
                             <div>
                                 <h3>Замовлення #{order.id}</h3>
+                                <h4>Замовлення клієнта #{order.order_id}</h4>
                                 <p className={styles.date}>
                                     Завершено: {new Date(order.completed_at).toLocaleString()}
                                 </p>

@@ -65,6 +65,18 @@ const ManagerPage = () => {
     return <div>Загрузка данных пользователя...</div>;
   }
 
+  const handleUpdateOrder = (updatedOrder) => {  
+    const actualUpdatedOrder = updatedOrder.order || updatedOrder;
+    
+    setOrders(prev => prev.map(order => 
+        order.id === actualUpdatedOrder.id 
+            ? { ...order, ...actualUpdatedOrder } 
+            : order
+    ));
+};
+  
+  
+
   return (
     <div className={styles.tabsContainer}>
       <div className={styles.tabHeaders}>
@@ -95,6 +107,7 @@ const ManagerPage = () => {
                   order={order}
                   onCancel={handleCancel}
                   onComplete={handleComplete}
+                  onUpdateOrder={handleUpdateOrder}
                 />
               ))}
             </div>
