@@ -15,25 +15,29 @@
     font-display: swap;
 }
 
+.header{
+    width: 100%;
+    background: $colobg;
+    box-shadow: $color-box-shadow;
+}
 
 .container {
     max-width: 1480px;
     margin: 0 auto;
     padding: 0 15px;
 }
-.header{
-    background: $colobg;
-    box-shadow: $color-box-shadow;
-}
 
 .headerBlock{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    align-items: self-start;
+    padding: 10px;
 }
 
 .logoBlock{
+    grid-column: 1;
+    grid-row: 2/1;
     width: 10rem;
 }
 .logoImg{
@@ -43,29 +47,39 @@
 }
 
 .titleBlock{
+    grid-column: 2/5;
+    grid-row: 2/1;
     text-align: center;
     font-family: $fontfamily-title;
+    margin-left: 120px;
 }
 
 .title{
-    display: block;
     max-height: 80px;
     font-family: 'Volja';
-    @include adaptiv-font(110, 48);
+    @include adaptiv-font(110, 54);
 }
 
 .subtitle{
     @include adaptiv-font(45, 24);
 }
 
-.itemsBlock{
+.dataBlock{
+    grid-column: 5/7;
+    grid-row: 1;
+    display: flex;
+    justify-content: flex-end;
     font-family: $fontfamily-data;
 }
 
-.dataBlock{
-    display: flex;
-    align-items: center
+.socialBlock{
+    grid-column: 5/7;
+    grid-row: 1;
+    @extend %flex-center;
+    gap: 2rem;
+    margin-top: 50px;
 }
+
 .city,
 .address,
 .tel{
@@ -80,12 +94,6 @@
 .telImg{
     margin: 3px 1rem;
     border-radius: 10px;
-}
-
-.socialBlock{
-    @extend %flex-center;
-    gap: 2rem;
-    padding-top: 1rem;
 }
 
 .icon{
@@ -105,8 +113,6 @@
     }
 }
 
-
-
 .iconTel{
     width: 35px;
     height: 35px;
@@ -118,61 +124,76 @@
     background-color: inherit;
 }
 
-
 .authBlock{
+    grid-column: 5/7;
+    grid-row: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    margin-top: 1rem;
+    margin-top: 90px;
+    font-family: $fontfamily-data;
 }
 
-
-@media (max-width: 1025px) {
-
-    .headerBlock {
-        justify-content: space-around;
+@media (max-width: 1150px){
+    .titleBlock {
+        margin-left: 20px;   
     }
+}
 
+@media (max-width: 1125px) {
+    .dataBlock {
+        grid-column: 5/7;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
     .socialBlock {
-        padding-top: 1rem;
+        grid-column: 1/4;
+        grid-row: 2;
+        margin: 10px;  
+    }
+    .authBlock {
+        grid-column: 4/7;
+        grid-row: 2;
+        margin: 10px;  
+    }
+}
+
+@media (max-width: 580px) {
+    .headerBlock {
+        align-items: center;  
     }
 
     .dataBlock {
-        flex-direction: column;
+        grid-column: 1/7;
+        grid-row: 2;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
+        gap: 7px;
     }
 
-    .adress {
-        margin: 0.8rem 0;
+    .socialBlock {
+        grid-column: 1/7;
+        grid-row: 3;
+        margin: 10px;
     }
-    
+
+    .authBlock {
+        grid-column: 1/7;
+        grid-row: 4;
+        margin: 10px;
+    }
 }
 
-@media (max-width: 821px) {
-    .headerBlock {
-        &__sety-icons {
-            width: 30px;
-        }
+@media (max-width: 480px) {
+    .dataBlock {
+        flex-direction: column;
     }
-
-}
-
-@media (max-width: 431px) {
-
-        .headerBlock {
-            flex-direction: column;
-        }
-
-        .headerBlock {
-            &__sety-icons {
-                width: 40px;
-            }
-        }
-
-        .tel {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
+    .city {
+        margin-right: 0;   
+    }
 }

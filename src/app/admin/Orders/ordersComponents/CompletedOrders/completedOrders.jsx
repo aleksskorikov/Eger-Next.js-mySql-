@@ -1,13 +1,16 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import styles from './_completedOrders.module.scss';
+import OrderPeriodFilter from '../OrderPeriodFilter/OrderPeriodFilter';
 
 const CompletedOrders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [filteredOrders, setFilteredOrders] = useState([]);
 
     useEffect(() => {
+        
         const fetchOrders = async () => {
             try {
                 const response = await fetch('/api/completed-orders?type=completed', {
@@ -34,7 +37,6 @@ const CompletedOrders = () => {
 
         fetchOrders();
     }, []);
-
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
@@ -74,13 +76,17 @@ const CompletedOrders = () => {
             <div className={styles.header}>
                 <h1 className={styles.title}>Завершені замовлення</h1>
                 <div className={styles.summary}>
-                    <span>Всього замовлень: {orders.length}</span>
-                    <span>Загальна сума: {orders.reduce((sum, order) => sum + order.total_price, 0)} грн</span>
+                    <span>Всього замовлень: {filteredOrders.length}</span>
+                    <span>Загальна сума: {filteredOrders.reduce((sum, order) => sum + order.total_price, 0)} грн</span>
                 </div>
             </div>
 
             <div className={styles.ordersList}>
-                {orders.map((order) => (
+                <OrderPeriodFilter
+                    orders={orders}
+                    onFiltered={setFilteredOrders}
+                />
+                {filteredOrders.map((order) => (
                     <div key={order.id} className={styles.orderCard}>
                         <div className={styles.orderHeader}>
                             <div>

@@ -16,7 +16,6 @@
         inset: 0;
         background-image: url(../../../../public//logo/fon.png);
         background-position: center 30%;
-        // background-repeat: no-repeat repeat;
         background-size: 22%;
         opacity: 0.05;
         z-index: -1;
@@ -71,7 +70,6 @@
 .productItem,
 .itemSpan{
     display: flex;
-    // align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
     margin-right: 0.5rem;
@@ -121,5 +119,16 @@
     &:hover{
         background-color: $sing-btn-bg;
         color: $whitesmoke;
+    }
+}
+
+@media (max-width: 500px) {
+    .productDeliteBtn {
+        text-transform: lowercase;  
+        margin: 1rem auto; 
+    }
+    .orderBtn {
+        height: 38px;
+        font-size: 1rem; 
     }
 }

@@ -1,7 +1,8 @@
+import { Op } from 'sequelize';
 import { Order, OrderItem, CompletedOrder } from '../../../models/user';
 
 export default async function handler(req, res) {
-  const { id } = req.query;
+  const { id, from, to } = req.query;
   const productId = Number(id);
 
   if (!productId || isNaN(productId)) {
@@ -9,12 +10,17 @@ export default async function handler(req, res) {
   }
 
   try {
+    const dateFilter = {};
+    if (from) dateFilter[Op.gte] = new Date(from);
+    if (to) dateFilter[Op.lte] = new Date(to);
+
     const items = await OrderItem.findAll({
       where: { product_id: productId },
       include: [
         {
           model: Order,
           required: true,
+          where: from || to ? { created_at: dateFilter } : undefined,
           include: [
             {
               model: CompletedOrder,
@@ -62,8 +68,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Внутренняя ошибка сервера' });
   }
 }
-
-
-
 
 

@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     const products = await Product.findAll({
       where: { id: productIds },
-      attributes: ['id', 'price', 'name'],
+      attributes: ['id', 'price', 'name', 'isOnSale', 'sale_price'],
     });
 
     return res.status(200).json(products);

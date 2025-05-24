@@ -19,8 +19,7 @@ const Header = () => {
 const { user } = useAuth(); 
   return (
     <header className={styles.header} id="header">
-      <div className={styles.container}>
-        <div className={styles.headerBlock}>
+        <div className={`${styles.headerBlock} ${styles.container}`} >
           <div className={styles.logoBlock}>
             <Image
                 src={Logo}
@@ -34,7 +33,6 @@ const { user } = useAuth();
             <h2 className={styles.subtitle}>магазин зброї</h2>
           </div>
 
-          <div className={styles.itemsBlock}>
             <div className={styles.dataBlock}>
               <p className={styles.city}>м.Запоріжжя,</p>
               <p className={styles.address}>вул.Базарна 14б</p>
@@ -63,9 +61,7 @@ const { user } = useAuth();
                 <CartCounterBadge />
             </Link>
             </div>
-          </div>
         </div>
-      </div>
     </header>
   );
 };

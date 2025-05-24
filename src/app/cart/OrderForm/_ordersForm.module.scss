@@ -63,3 +63,10 @@
 .submitButton:hover {
     background-color: #005ecb;
 }
+
+@media (max-width: 500px) {
+    .input,
+    .select {
+        width: 100%;
+    }
+}

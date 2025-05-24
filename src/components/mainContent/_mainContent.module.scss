@@ -6,7 +6,7 @@
     text-align: center;
 
     .sectionTitle {
-        margin: 3% 0;
+        margin: 4% 0;
         text-shadow: 3px 3px 30px $title-text-shadow;
         font-family: $fontfamily-title;
         font-weight: bold;
@@ -28,7 +28,7 @@
     .sectionFoto {
         flex: 0 0 60%;
         height: 26rem;
-        background-image: url(../../../public/images/hanter-foto/hunting.webp);
+        background-image: url('/images/hanter-foto/hunting.webp');
         background-position: center;
         background-size: cover;
         border: 2px solid $info-color-border;
@@ -56,8 +56,20 @@
 }
 
 .tourisma{
-        padding-bottom: 5rem;
+    padding-bottom: 5rem;
+}
+
+@media (max-width: 912px) {
+    .section{
+        .sectionInfo {
+            flex-direction: column;
+            align-items: normal;
+        }
+        .sectionFoto {
+            min-height: 300px;
+        }
     }
+}
 
 
 

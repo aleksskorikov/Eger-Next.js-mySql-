@@ -79,35 +79,3 @@
     }
 }
 
-@media (max-width: 550px) {
-    .activ {
-        border: 4px solid $grey;
-    }
-
-    .menu__one {
-        padding: 1rem;
-    }
-
-    .menu__img,
-    .menu-two__img {
-        width: 4rem;
-        height: 4rem;
-    }
-
-    .name {
-        font-size: 1rem;
-    }
-
-    .card,
-    .card-two {
-        width: 10rem;
-    }
-
-    .name {
-        font-size: 1rem;
-    }
-
-    .price {
-        font-size: 1.5rem;
-    }
-}

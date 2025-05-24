@@ -1,14 +1,19 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import styles from "./_cartTab.module.scss";
 import OrderForm from '../OrderForm/OrderForm.jsx';
 import useAuthUser from '../../../../pages/api/users/useAuthUser.js';
+import PriceChangeModal from './PriceChangeModal/PriceChangeModal';
 
 const CartTab = ({ removeItem }) => {
     const [showForm, setShowForm] = useState(false);
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [priceCheckLoading, setPriceCheckLoading] = useState(false);
+    const [changedItems, setChangedItems] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+
     const user = useAuthUser();
 
     useEffect(() => {
@@ -64,123 +69,139 @@ const CartTab = ({ removeItem }) => {
     };
 
     const total = items.reduce((sum, item) => {
-        const discount = item.Product?.discount_price || 0;
-        const price = item.price || 0;  
-        return sum + (price - discount) * item.quantity;
+        const priceToUse = item.Product?.isOnSale && item.Product?.sale_price != null
+            ? item.Product.sale_price
+            : item.price || 0;
+        return sum + priceToUse * item.quantity;
     }, 0);
+
+    function getUserIdFromToken(token) {
+        try {
+            const base64Payload = token.split('.')[1];
+            const payload = JSON.parse(atob(base64Payload));
+            return payload.user_id || payload.id;
+        } catch {
+            return null;
+        }
+    }
 
     const checkPricesBeforeOrder = async () => {
         const token = localStorage.getItem('token');
         if (!token) {
-        alert('Пользователь не авторизован');
-        return;
-        }
-    
-        const user_id = getUserIdFromToken(token); 
-    
-        setPriceCheckLoading(true);
-        try {
-        const productIds = items.map(item => item.product_id);
-        const response = await fetch(`/api/orders/prices?ids=${productIds.join(',')}`, {
-            method: 'GET',
-            headers: {
-            'Authorization': `Bearer ${token}`,
-            },
-        });
-    
-        if (!response.ok) {
-            throw new Error('Не удалось проверить цены товаров');
-        }
-    
-        const data = await response.json();
-    
-        let updatedItems = [...items];
-        let changedItems = [];
-    
-        for (const item of items) {
-            const current = data.find(p => p.id === item.product_id);
-            if (!current) continue;
-    
-            const oldFinalPrice = item.price - (item.Product?.discount_price || 0);
-            const newFinalPrice = current.price - (current.discount_price || 0);
-    
-            if (oldFinalPrice !== newFinalPrice) {
-            changedItems.push({
-                name: item.Product?.name || 'Товар',
-                oldPrice: oldFinalPrice,
-                newPrice: newFinalPrice,
-                product_id: item.product_id,
-            });
-    
-            updatedItems = updatedItems.map(it => it.product_id === item.product_id
-                ? {
-                ...it,
-                price: current.price,
-                Product: {
-                    ...it.Product,
-                    discount_price: current.discount_price
-                }
-                }
-                : it);
-            }
-        }
-    
-        if (changedItems.length === 0) {
-            setShowForm(true);
+            alert('Пользователь не авторизован');
             return;
         }
-    
-        let msg = 'Цены на некоторые товары изменились:\n';
-        changedItems.forEach(ci => {
-            msg += `\n${ci.name}: была ${ci.oldPrice} грн, стала ${ci.newPrice} грн`;
-        });
-        msg += '\n\nОформить заказ по новым ценам?';
-    
-        if (window.confirm(msg)) {
-            setItems(updatedItems);
-            setShowForm(true);
-        } else {
-            const changedProductIds = changedItems.map(ci => ci.product_id);
-    
-            try {
+
+        const user_id = getUserIdFromToken(token);
+        setPriceCheckLoading(true);
+
+        try {
+            const productIds = items.map(item => item.product_id);
+            const response = await fetch(`/api/orders/prices?ids=${productIds.join(',')}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Не удалось проверить цены товаров');
+            }
+
+            const data = await response.json();
+
+            let updatedItems = [...items];
+            let localChangedItems = [];
+
+            for (const item of items) {
+                const current = data.find(p => p.id === item.product_id);
+                if (!current) continue;
+
+                const wasOnSale = item.Product?.isOnSale && item.Product?.sale_price != null;
+                const oldFinalPrice = wasOnSale ? item.Product.sale_price : item.price;
+
+                const nowOnSale = current.isOnSale && current.sale_price != null;
+                const newFinalPrice = nowOnSale ? current.sale_price : current.price;
+
+                const oldPriceNum = Number(oldFinalPrice);
+                const newPriceNum = Number(newFinalPrice);
+
+                if (Math.abs(oldPriceNum - newPriceNum) > 0.001) {
+                    localChangedItems.push({
+                        name: item.Product?.name || 'Товар',
+                        oldPrice: oldFinalPrice,
+                        newPrice: newFinalPrice,
+                        product_id: item.product_id,
+                    });
+
+                    updatedItems = updatedItems.map(it =>
+                        it.product_id === item.product_id
+                            ? {
+                                ...it,
+                                price: current.price,
+                                Product: {
+                                    ...it.Product,
+                                    isOnSale: current.isOnSale,
+                                    sale_price: current.sale_price,
+                                },
+                            }
+                            : it
+                    );
+                }
+            }
+
+            if (localChangedItems.length === 0) {
+                setShowForm(true);
+                return;
+            }
+
+            setChangedItems(localChangedItems);
+            setModalVisible(true);
+            setUpdatedItemsForConfirm(updatedItems);
+
+        } catch (error) {
+            console.error('Ошибка при проверке цен:', error);
+            alert(error.message);
+        } finally {
+            setPriceCheckLoading(false);
+        }
+    };
+
+    const [updatedItemsForConfirm, setUpdatedItemsForConfirm] = useState([]);
+
+    const handleConfirmOrder = () => {
+        setItems(updatedItemsForConfirm); 
+        setShowForm(true);
+        setModalVisible(false);
+    };
+
+    const handleCancelOrder = async () => {
+        const changedProductIds = changedItems.map(ci => ci.product_id);
+        const token = localStorage.getItem('token');
+        const user_id = getUserIdFromToken(token);
+
+        try {
             const res = await fetch('/api/cart', {
                 method: 'DELETE',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({ user_id, productIds: changedProductIds }),
             });
-    
+
             if (!res.ok) {
                 throw new Error('Ошибка при удалении товаров из корзины');
             }
-    ы
+
             setItems(prevItems => prevItems.filter(item => !changedProductIds.includes(item.product_id)));
-            } catch (error) {
+        } catch (error) {
             console.error('Ошибка при удалении товаров из корзины:', error);
             alert('Не удалось удалить товары с изменённой ценой из корзины');
-            }
         }
-        } catch (error) {
-        console.error('Ошибка при проверке цен:', error);
-        alert(error.message);
-        } finally {
-        setPriceCheckLoading(false);
-        }
+        setModalVisible(false);
     };
-        
-    function getUserIdFromToken(token) {
-        try {
-        const base64Payload = token.split('.')[1];
-        const payload = JSON.parse(atob(base64Payload));
-        return payload.user_id || payload.id;
-        } catch {
-        return null;
-        }
-    }
-    
-    
+
     const handleOrderSubmit = (orderId) => {
         alert(`Замовлення #${orderId} прийнято!`);
         setShowForm(false);
@@ -197,6 +218,7 @@ const CartTab = ({ removeItem }) => {
     }
 
     return (
+        <>
         <div className={styles.main}>
             <h1 className={styles.title}>Корзина</h1>
             {items.length === 0 ? (
@@ -209,7 +231,7 @@ const CartTab = ({ removeItem }) => {
                             <div className={styles.productItemsBlock}>
                                 <p className={styles.productItem}>
                                     <span className={styles.itemSpan}>Ціна:</span>
-                                    {item.price || 0}  
+                                    {(item.Product?.isOnSale && item.Product?.sale_price != null) ? item.Product.sale_price : item.price}  
                                     <span className={styles.itemSpan}>грн</span>
                                 </p>
                                 <p className={styles.productItem}>
@@ -220,12 +242,12 @@ const CartTab = ({ removeItem }) => {
                                 </p>
                                 <p className={styles.productItem}>
                                     <span className={styles.itemSpan}>Знижка:</span>
-                                    {item.Product?.discount_price || 0}
+                                    {(item.Product?.isOnSale && item.Product?.sale_price != null) ? (item.price - item.Product.sale_price) : 0}
                                     <span className={styles.itemSpan}>грн</span>
                                 </p>
                                 <p className={styles.productItem}>
                                     <span className={styles.itemSpan}>Разом:</span>
-                                    {(item.price - (item.Product?.discount_price || 0)) * item.quantity}
+                                    {((item.Product?.isOnSale && item.Product?.sale_price != null) ? item.Product.sale_price : item.price) * item.quantity}
                                     <span className={styles.itemSpan}>грн</span>
                                 </p>
                                 <button onClick={() => handleRemoveItem(item.product_id)} className={styles.productDeliteBtn}>Видалити</button>
@@ -247,6 +269,15 @@ const CartTab = ({ removeItem }) => {
 
             {showForm && <OrderForm onSubmit={handleOrderSubmit} cartItems={items} />}
         </div>
+
+        {modalVisible && (
+            <PriceChangeModal
+                changedItems={changedItems}
+                onConfirm={handleConfirmOrder}
+                onCancel={handleCancelOrder}
+            />
+        )}
+        </>
     );
 };
 

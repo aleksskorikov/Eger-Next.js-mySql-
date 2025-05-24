@@ -5,6 +5,7 @@
 .pageTop{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 400px;
     margin-top: 10px;
     background-color: rgb(189, 183, 107, .3);
@@ -25,4 +26,16 @@
 .topImage {
     object-fit: cover;
     border-radius: 5px; 
+}
+
+@media (max-width: 970px) {
+    .pageTop {
+        flex-direction: column;
+        align-items: center;
+        height: 600px;
+    }
+    .menuBlock {
+        width: 100%;
+        order: 2;  
+    }
 }
