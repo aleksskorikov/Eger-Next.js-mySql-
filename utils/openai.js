@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { getDatabaseSchema } from './schemaBuilder';
 
 export async function generateSQLFromText(userQuery) {
@@ -10,7 +13,7 @@ export async function generateSQLFromText(userQuery) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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', 
+            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
             'HTTP-Referer': 'http://localhost:3000',
             'X-Title': 'Eger SQL Bot'
         },
