@@ -20,7 +20,7 @@ import MenuImg6 from '../../../../public/images/menu img/clos4.jpg';
 import MenuImg7 from '../../../../public/images/menu img/clos5.jpg';
 import MenuImg8 from '../../../../public/images/menu img/clos6.jpg';
 import MenuImg9 from '../../../../public/images/menu img/clos8.jpg';
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/cloth.jpg";
 
 const Cloth = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

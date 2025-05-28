@@ -49,11 +49,14 @@
     margin: 0 1rem;
     color: $add-product-cancellation;
 }
-
-@media (max-width: 1125px) {
-
+@media (max-width: 970px) {
+    .productsList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3rem;   
+    }
 }
-
 
 @media (max-width: 769px) {
     .menu {

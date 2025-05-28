@@ -9,7 +9,6 @@ import PrintOrderButton from '../btns/PrintOrderButton';
 const OrderItem = ({ order, onAccept, onCancel, onComplete, completedOrders = [], onUpdateOrder }) => {
     const [isEditing, setIsEditing] = useState(false); 
     const handleSave = async (updatedOrder) => {
-        console.log('Saving order:', updatedOrder);
                 try {
                     if (onUpdateOrder) {
                         await onUpdateOrder(updatedOrder); 
@@ -93,7 +92,7 @@ const OrderItem = ({ order, onAccept, onCancel, onComplete, completedOrders = []
                                                     <div className={styles.itemInfo}>
                                                         <div>
                                                             <p className={styles.itemName}>{item.Product?.name || 'No Name'}</p>
-                                                            <p className={styles.itemArticle}># {item.Product?.id || 'N/A'}</p>
+                                                            <p className={styles.itemArticle}>Артикул: # {item.Product?.article || 'N/A'}</p>
                                                         </div>
                                                     </div>
                                                 </td>

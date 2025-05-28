@@ -55,6 +55,7 @@ export default async function handler(req, res) {
                     product_name: item.Product.name,
                     quantity: item.quantity,
                     price: item.price,
+                    article: item.Product.article,
                 })) || [],
                 user: order?.User ? {
                     id: order.User.id,

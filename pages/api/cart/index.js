@@ -22,7 +22,6 @@ export default async function handler(req, res) {
         console.warn(`Корзина пустая для пользователя с ID: ${user_id}`);
         return res.status(200).json({ items: [] });
       }
-
       res.status(200).json({ items });
     } catch (error) {
       console.error('Ошибка при получении корзины:', error.message);
@@ -30,8 +29,7 @@ export default async function handler(req, res) {
     }
   } else if (method === 'POST') {
     try {
-      const { user_id, product_id, quantity } = req.body;
-
+      const { user_id, product_id, quantity} = req.body;
       if (!user_id || !product_id) {
         console.warn('Ошибка: недостаточно данных для добавления товара');
         return res.status(400).json({ message: "Данные отсутствуют" });
@@ -48,7 +46,7 @@ export default async function handler(req, res) {
         user_id,
         product_id,
         quantity: quantity || 1,
-        price: priceToUse
+        price: priceToUse,
       });
 
       res.status(200).json({ message: "Товар добавлен в корзину" });

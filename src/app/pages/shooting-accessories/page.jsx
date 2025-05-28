@@ -13,7 +13,7 @@ import MenuImg from "../../../../public/images/menu img/shooting accessories.jpg
 import MenuImg1 from "../../../../public/images/menu img/shooting accessories1.jpg";
 import MenuImg2 from "../../../../public/images/menu img/shooting accessories2.jpg";
 import MenuImg3 from "../../../../public/images/menu img/shooting accessories3.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/shootingAccessories.jpg";
 
 const ShootingAccessories = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

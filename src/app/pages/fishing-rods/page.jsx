@@ -18,7 +18,7 @@ import MenuImg4 from "../../../../public/images/menu img/fishing rods4.jpg";
 import MenuImg5 from "../../../../public/images/menu img/fishing rods5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/fishing rods6.jpg";
 import MenuImg7 from "../../../../public/images/menu img/fishing rods7.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/fishingRods.jpg";
 
 const FishingRods = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

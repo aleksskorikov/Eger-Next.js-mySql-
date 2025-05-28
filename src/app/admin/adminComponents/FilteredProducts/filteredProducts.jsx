@@ -65,6 +65,7 @@ const FilteredProducts = ({ products, onProductUpdate }) => {
                     return (
                         <div key={index} className={styles.productCard}>
                             <h3 className={styles.productName}>{product.name}</h3>
+                            <p className={styles.productsArticle}>Артикул: # {product.article}</p>
                             <div className={styles.imageSlider}>
                                 {productImages.length > 0 ? (
                                     productImages.map((img, i) => (

@@ -18,7 +18,7 @@ import MenuImg5 from "../../../../public/images/menu img/equipment5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/equipment6.jpg";
 import MenuImg7 from "../../../../public/images/menu img/equipment7.jpg";
 import MenuImg8 from "../../../../public/images/menu img/equipment8.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/equipment.jpg";
 
 const Equipment = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

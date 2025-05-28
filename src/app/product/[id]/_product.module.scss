@@ -91,6 +91,13 @@
     
 }
 
+.productsArticle{
+    margin: 2rem 0;
+    color: #0367a6;
+    font-weight: bold;
+    @include adaptiv-font(24, 14);
+}
+
 .productPrice {
     text-align: center;
     margin-top: 2rem;

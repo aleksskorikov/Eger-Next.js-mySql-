@@ -79,3 +79,9 @@
     }
 }
 
+@media (max-width: 970px) {
+    .card {
+        box-shadow: 3px 3px 10px $title-text-shadow;
+    }
+}
+

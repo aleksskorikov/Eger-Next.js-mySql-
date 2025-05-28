@@ -10,7 +10,8 @@ import { useAuth } from '../../components/users/authContext';
 import styles from './_admin.module.scss';
 import PendingOrdersCounter from './Orders/ordersComponents/PendingOrdersCounter/pendingOrdersCounter';
 import AnalyticsBot from './AnalyticsBot/AnalyticsBot';
-import Analitycs from "./Analytics/analitycs"
+import Analitycs from "./Analytics/analitycs";
+import Search from "./Search/Search";
 
 const Page = () => {
     const { user } = useAuth(); 
@@ -65,7 +66,7 @@ const Page = () => {
                         Клієнти
                     </button>
                 )}
-                {(isAdmin || isManager) && (
+                {(isAdmin ) && (
                     <button
                         className={`${styles.tabButton} ${activeTab === 'ii' ? styles.active : ''}`}
                         onClick={() => handleTabClick('ii')}
@@ -73,12 +74,20 @@ const Page = () => {
                         Аналітика II
                     </button>
                 )}
-                {(isAdmin || isManager) && (
+                {(isAdmin) && (
                     <button
                         className={`${styles.tabButton} ${activeTab === 'analitics' ? styles.active : ''}`}
                         onClick={() => handleTabClick('analitics')}
                     >
                         Аналітика 
+                    </button>
+                )}
+                {(isAdmin || isManager) && (
+                    <button
+                        className={`${styles.tabButton} ${activeTab === 'search' ? styles.active : ''}`}
+                        onClick={() => handleTabClick('search')}
+                    >
+                        Пошук
                     </button>
                 )}
             </div>
@@ -88,8 +97,9 @@ const Page = () => {
                 {activeTab === 'managers' && isAdmin && <Managers />}
                 {activeTab === 'orders' && (isAdmin || isManager) && <Orders />}
                 {activeTab === 'users' && (isAdmin || isManager) && <Users />}
-                {activeTab === 'ii' && (isAdmin || isManager) && <AnalyticsBot />}
-                {activeTab === 'analitics' && (isAdmin || isManager) && <Analitycs />}
+                {activeTab === 'ii' && (isAdmin ) && <AnalyticsBot />}
+                {activeTab === 'analitics' && (isAdmin) && <Analitycs />}
+                {activeTab === 'search' && (isAdmin || isManager) && <Search />}
             </div>
         </div>
     );

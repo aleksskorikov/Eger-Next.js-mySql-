@@ -55,7 +55,6 @@ const OrdersTab = () => {
         orders.map(order => (
           <div key={order.id} className={styles.orderCard}>
             <h3 className={styles.orderNumber}>Замовлення №{order.id}</h3>
-            {/* <p className={styles.orderStatus}>Статус: {order.status}</p> */}
             <p className={styles.orderStatus}>
               Статус: {
                 order.status === 'pending' ? 'в очікуванні' :
@@ -72,6 +71,7 @@ const OrdersTab = () => {
             <div className={styles.itemsWrapper}>
               {order.OrderItems?.map(item => (
                 <div key={item.id} className={styles.item}>
+                  <p className={styles.productsArticle}>Артикул: # {item.Product.article}</p>
                   <p>Назва: {item.Product?.name || '—'}</p>
                   <p>Кількість: {item.quantity}</p>
                   <p>Ціна: {item.price} грн</p>

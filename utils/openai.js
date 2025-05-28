@@ -10,7 +10,7 @@ export async function generateSQLFromText(userQuery) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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', // твой ключ
+            'Authorization': 'Bearer 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', 
             'HTTP-Referer': 'http://localhost:3000',
             'X-Title': 'Eger SQL Bot'
         },

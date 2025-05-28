@@ -16,7 +16,7 @@ import MenuImg3 from "../../../../public/images/menu img/thermal underwear3.jpg"
 import MenuImg4 from "../../../../public/images/menu img/thermal underwear4.jpg";
 import MenuImg5 from "../../../../public/images/menu img/thermal underwear5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/thermal underwear6.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/thermalUnderwear.jpeg";
 
 const TthermalUnderwear = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

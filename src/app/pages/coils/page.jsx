@@ -15,7 +15,7 @@ import MenuImg1 from '../../../../public/images/menu img/coils1.jpg';
 import MenuImg2 from '../../../../public/images/menu img/coils2.jpg';
 import MenuImg3 from '../../../../public/images/menu img/coils3.jpg';
 import MenuImg4 from '../../../../public/images/menu img/coils4.jpg';
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/coils.webp";
 
 const Coils = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

@@ -19,7 +19,7 @@ import MenuImg5 from "../../../../public/images/menu img/care5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/care6.jpg";
 import MenuImg7 from "../../../../public/images/menu img/care7.jpg";
 import MenuImg8 from "../../../../public/images/menu img/care8.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/care.jpg";
 
 const Care = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

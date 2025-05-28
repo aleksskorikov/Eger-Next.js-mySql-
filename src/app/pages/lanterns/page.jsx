@@ -17,7 +17,7 @@ import MenuImg3 from "../../../../public/images/menu img/lanterns3.jpg";
 import MenuImg4 from "../../../../public/images/menu img/lanterns4.jpg";
 import MenuImg5 from "../../../../public/images/menu img/lanterns5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/lanterns6.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/lanterns.webp";
 
 const Lanterns = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

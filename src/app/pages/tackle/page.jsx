@@ -17,7 +17,7 @@ import MenuImg4 from "../../../../public/images/menu img/tackle4.jpg";
 import MenuImg5 from "../../../../public/images/menu img/tackle5.jpg";
 import MenuImg6 from "../../../../public/images/menu img/tackle6.jpg";
 import MenuImg7 from "../../../../public/images/menu img/tackle7.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/tacle.jpg";
 
 const Tackle = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');

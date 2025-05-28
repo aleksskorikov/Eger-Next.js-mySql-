@@ -228,6 +228,7 @@ const CartTab = ({ removeItem }) => {
                     {items.map(item => (
                         <div key={item.id} className={styles.cartProduct}>
                             <h3 className={styles.productTitle}>{item.Product?.name || 'Без назви'}</h3>
+                            <p className={styles.productsArticle}>Артикул: # {item.Product.article}</p>
                             <div className={styles.productItemsBlock}>
                                 <p className={styles.productItem}>
                                     <span className={styles.itemSpan}>Ціна:</span>

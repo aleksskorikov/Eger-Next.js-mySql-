@@ -142,7 +142,7 @@ const CompletedOrders = () => {
                             <table className={styles.itemsTable}>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Артикул</th>
                                         <th>Назва</th>
                                         <th>Кількість</th>
                                         <th>Ціна</th>
@@ -153,7 +153,7 @@ const CompletedOrders = () => {
                                     {order.items?.length > 0 ? (
                                         order.items.map((item) => (
                                             <tr key={`${order.id}-${item.id}`}>
-                                                <td>{item.id}</td>
+                                                <td>{item.article}</td>
                                                 <td>{item.product_name}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>{item.price} грн</td>

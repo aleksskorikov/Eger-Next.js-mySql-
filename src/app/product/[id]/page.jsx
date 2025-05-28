@@ -119,7 +119,7 @@ const Product = () => {
                         </div>
                     </div>
                     </div>
-                    
+                    <p className={styles.productsArticle}>Артикул: # {product.article}</p>
                     <p className={styles.productPrice}>
                         {product.isOnSale && product.sale_price ? (
                             <>

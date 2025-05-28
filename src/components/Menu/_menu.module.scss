@@ -23,7 +23,6 @@
     max-width: 140px;
     cursor: pointer;
     padding-top: 15px;
-
 }
 
 .menuImg {
@@ -37,6 +36,7 @@
     max-width: 15rem;
     text-align: center;
     text-transform: lowercase;
+    margin-top: 10px;
 }
 
 .active {
@@ -44,17 +44,18 @@
 }
 
 @media (max-width: 550px) {
-    .activ {
-        border: 4px solid $grey;
-    }
-
+    .active {
+        border: 6px solid $grey;
+    }    
+    
     .menuOne {
         padding: 1rem;
+        gap: 1rem;
     }
 
     .menuImg {
-        width: 4rem;
-        height: 4rem;
+        width: 80px;
+        height: 80px;
     }
 
     .menuName {

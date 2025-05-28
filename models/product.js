@@ -19,12 +19,41 @@ const Product = sequelize.define('Product', {
     price: { type: DataTypes.DECIMAL(10, 2) },
     description: { type: DataTypes.TEXT },
     status: { type: DataTypes.BOOLEAN, defaultValue: false },
-    isOnSale: { type: DataTypes.BOOLEAN, defaultValue: false,},
-    sale_price: { type: DataTypes.FLOAT, allowNull: true,},
-    }, {
+    isOnSale: { type: DataTypes.BOOLEAN, defaultValue: false },
+    sale_price: { type: DataTypes.FLOAT, allowNull: true },
+    article: {
+        type: DataTypes.STRING(6),
+        allowNull: false,
+        unique: true,
+        validate: {
+            is: /^\d{6}$/ 
+        }
+    },
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    }
+}, {
     tableName: 'products',
-    timestamps: false
-    });
+    timestamps: false,
+    hooks: {
+        beforeCreate: async (product) => {
+            if (!product.article) {
+                let unique = false;
+                while (!unique) {
+                    const generated = String(Math.floor(100000 + Math.random() * 900000));
+                    const existing = await Product.findOne({ where: { article: generated } });
+                    if (!existing) {
+                        product.article = generated;
+                        unique = true;
+                    }
+                }
+            }
+        }
+    }
+});
+
 
 const ProductImage = sequelize.define('ProductImage', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },

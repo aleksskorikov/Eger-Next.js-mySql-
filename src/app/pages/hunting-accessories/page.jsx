@@ -15,7 +15,7 @@ import MenuImg1 from "../../../../public/images/menu img/hunting accessories1.jp
 import MenuImg2 from "../../../../public/images/menu img/hunting accessories2.jpg";
 import MenuImg3 from "../../../../public/images/menu img/hunting accessories3.jpg";
 import MenuImg4 from "../../../../public/images/menu img/hunting accessories4.jpg";
-import topImage from "../../../../public/images/pages-img/guns1.jpg";
+import topImage from "../../../../public/images/pages-img/huntingAccessories.jpg";
 
 const HuntingAccessories = () => {
     const [activeMenuOne, setActiveMenuOne] = useState('all');
