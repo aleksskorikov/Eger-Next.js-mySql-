@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '5001',
-        pathname: '/static/**', // Путь должен начинаться с /static/
+        pathname: '/static/**', 
       },
     ],
   },
