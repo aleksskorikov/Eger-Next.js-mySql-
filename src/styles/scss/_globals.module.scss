@@ -2,9 +2,6 @@
 @use '../scss/mixins.module.scss' as *;
 @use "../scss/templates.module.scss" as *;
 
-html, body{
-    height: 100%;
-}
 
 .body {
     display: flex;

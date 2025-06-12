@@ -1,3 +1,5 @@
+"use client"; 
+
 import React, { useEffect, useState } from 'react';
 import styles from "./_orders.module.scss";
 import NewOrders from "./ordersComponents/NewOrders/newOrders.jsx";
