@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../../../components/users/authContext';
 import OrderItem from '../OrderItem/OrderItem';
-import CompletedOrders from '../completedOrders/completedOrders.jsx';
+import CompletedOrders from '../CompletedOrders/completedOrders.jsx';
 import styles from './_managers.module.scss';
 
 const ManagerPage = () => {
