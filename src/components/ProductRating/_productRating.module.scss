@@ -1,0 +1,56 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+.star {
+    font-size: 32px;
+    color: #a5a5a5;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    
+
+    &.filled {
+        color: rgb(230, 196, 3);
+    }
+
+    &.half {
+        color: #ccc;
+        position: relative;
+
+        &::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            color: gold;
+            pointer-events: none;
+        }
+    }
+
+}
+
+.ratingWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+.ratingInfo {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+.userVote {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #0070f3;
+}

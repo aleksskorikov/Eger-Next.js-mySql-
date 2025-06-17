@@ -71,6 +71,7 @@ const AdminUsers = ({ onSelectUser }) => {
                         <th>Телефон</th>
                         <th>Email</th>
                         <th>Місто</th>
+                        <th>Дісконт</th>
                         <th>Дії</th>
                         
                     </tr>
@@ -86,6 +87,7 @@ const AdminUsers = ({ onSelectUser }) => {
                                 <td>{user.phone}</td>
                                 <td>{user.email}</td>
                                 <td>{user.city}</td>
+                                <td>{user.discount}</td>
                                 <td>
                                     <button onClick={(e) => {
                                         e.stopPropagation();

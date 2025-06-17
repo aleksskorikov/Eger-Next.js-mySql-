@@ -1,0 +1,70 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+.container {
+    display: flex;
+    max-width: 1480px;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.title{
+    @extend %cartTitle;
+}
+.grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 0 auto 2rem;
+    border: 3px solid $form-bg;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
+}
+.cardWrapper {
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: top center;
+    animation: pixelAppear 0.2s ease-out;
+
+    &.removing {
+        animation: pixelCollapse 0.4s forwards;
+    }
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+@keyframes pixelCollapse {
+    0% {
+        transform: scaleY(1) scaleX(1);
+        opacity: 1;
+        filter: contrast(1);
+    }
+
+    40% {
+        transform: scaleY(0.6) scaleX(0.9);
+        filter: contrast(3);
+    }
+
+    70% {
+        transform: scaleY(0.3) scaleX(0.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scaleY(0.05) scaleX(0.05);
+        opacity: 0;
+        filter: contrast(5);
+    }
+}

@@ -10,10 +10,7 @@
 }
 
 .title {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #222;
+    @extend %cartTitle;
 }
 
 .loading,
@@ -24,11 +21,12 @@
 }
 
 .orderCard {
-    border: 1px solid #ccc;
+    border: 3px solid $form-bg;
     border-radius: 12px;
     margin-bottom: 24px;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
 }
 
 .orderNumber {

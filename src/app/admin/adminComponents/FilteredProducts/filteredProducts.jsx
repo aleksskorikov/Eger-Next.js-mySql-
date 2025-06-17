@@ -6,6 +6,7 @@ import DeleteBtn from "../DeliteBtn/deliteBtn";
 import EditProductForm from "../EditProductForm/EditProductForm";
 import Image from "next/image";
 import ProductAnalytics from "../../Analytics/ProductAnalitycs/ProductAnalitycs";
+import ProductReviews from "../../../../components/ProductReviews/ProductReviews";
 
 const FilteredProducts = ({ products, onProductUpdate }) => {
     const [productList, setProductList] = useState(products || []);
@@ -132,6 +133,7 @@ const FilteredProducts = ({ products, onProductUpdate }) => {
                                     imageIds={editingProduct.ProductImages?.map(img => img.id) || []}
                                 />
                             )}
+                            <ProductReviews productId={product.id}/>
                             <ProductAnalytics productId={product.id} />
                         </div>
                     );

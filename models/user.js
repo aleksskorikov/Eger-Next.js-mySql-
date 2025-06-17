@@ -11,6 +11,7 @@ const User = sequelize.define('User', {
   middle_name: { type: DataTypes.STRING(100) },
   phone: { type: DataTypes.STRING(20) },
   city: { type: DataTypes.STRING(100) },
+  discount: { type: DataTypes.FLOAT, allowNull: false, defaultValue: 0 },
   role: {
     type: DataTypes.ENUM('admin', 'manager', 'client'),
     allowNull: false,

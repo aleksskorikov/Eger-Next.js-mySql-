@@ -243,14 +243,87 @@ if (sale_price && isNaN(parsedSalePrice)) {
   }
 }
 
+// async function handleGetRequest(req, res) {
+//   const { id, category, subcategory } = req.query;
+
+//   try {
+//     if (id) {
+//       const product = await Product.findByPk(id, {
+//         include: [
+//           { model: ProductImage, attributes: ['id', 'image_url'] },
+//           { model: ProductDescription, attributes: ['description_text', 'description_order'] },
+//           {
+//             model: Category,
+//             attributes: ['name'],
+//             include: { model: ProductGroup, attributes: ['name'] }
+//           }
+//         ]
+//       });
+
+//       if (!product) {
+//         console.error('Product not found for ID:', id);
+//         return res.status(404).json({ message: 'Товар не найден' });
+//       }
+//       return res.status(200).json(product);
+//     }
+
+//     const whereClause = {};
+
+//     if (ids) {
+//       const idArray = ids.split(',').map(id => parseInt(id)).filter(Boolean);
+//       if (idArray.length > 0) {
+//         whereClause.id = idArray;
+//       }
+//     }
+
+//     if (category) {
+//       const group = await ProductGroup.findOne({
+//         where: { name: category },
+//         include: { model: Category, attributes: ['id'] },
+//       });
+
+//       if (!group) {
+//         console.error('Group not found for category:', category);
+//         return res.status(404).json({ message: 'Группа не найдена' });
+//       }
+
+//       const categoryIds = group.Categories.map(c => c.id);
+//       whereClause.category_id = categoryIds;
+//     }
+
+//     if (subcategory && subcategory !== 'all') {
+//       whereClause.subcategory_id = parseInt(subcategory, 10);
+//     }
+
+//     const products = await Product.findAll({
+//       where: whereClause,
+//       include: [
+//         { model: ProductImage, attributes: ['id', 'image_url'] },
+//         { model: ProductDescription, attributes: ['description_text', 'description_order'] },
+//         {
+//           model: Category,
+//           attributes: ['name'],
+//           include: { model: ProductGroup, attributes: ['name'] }
+//         }
+//       ],
+//     });
+
+//     return res.status(200).json(products);
+//   } catch (error) {
+//     console.error('Error while fetching products:', error);
+//     return res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+//   }
+// }
+
 async function handleGetRequest(req, res) {
-  const { id, category, subcategory } = req.query;
+  const { id, ids, category, subcategory } = req.query;
 
   try {
+    // Если передан конкретный ID — возвращаем один товар
     if (id) {
       const product = await Product.findByPk(id, {
         include: [
-          { model: ProductImage, attributes: ['id', 'image_url'] }, 
+          { model: ProductImage, attributes: ['id', 'image_url'] },
           { model: ProductDescription, attributes: ['description_text', 'description_order'] },
           {
             model: Category,
@@ -264,34 +337,49 @@ async function handleGetRequest(req, res) {
         console.error('Product not found for ID:', id);
         return res.status(404).json({ message: 'Товар не найден' });
       }
+
       return res.status(200).json(product);
     }
 
     const whereClause = {};
 
-    if (category) {
-      const group = await ProductGroup.findOne({
-        where: { name: category },
-        include: { model: Category, attributes: ['id'] },
-      });
+    // Если передан список ID — возвращаем товары по ним
+    if (ids) {
+      const idArray = ids
+        .split(',')
+        .map((id) => parseInt(id, 10))
+        .filter(Boolean);
 
-      if (!group) {
-        console.error('Group not found for category:', category);
-        return res.status(404).json({ message: 'Группа не найдена' });
+      if (idArray.length > 0) {
+        whereClause.id = idArray;
+      }
+    } else {
+      // Иначе фильтруем по категории и подкатегории
+      if (category) {
+        const group = await ProductGroup.findOne({
+          where: { name: category },
+          include: { model: Category, attributes: ['id'] },
+        });
+
+        if (!group) {
+          console.error('Group not found for category:', category);
+          return res.status(404).json({ message: 'Группа не найдена' });
+        }
+
+        const categoryIds = group.Categories.map((c) => c.id);
+        whereClause.category_id = categoryIds;
       }
 
-      const categoryIds = group.Categories.map(c => c.id);
-      whereClause.category_id = categoryIds;
+      if (subcategory && subcategory !== 'all') {
+        whereClause.subcategory_id = parseInt(subcategory, 10);
+      }
     }
 
-    if (subcategory && subcategory !== 'all') {
-      whereClause.subcategory_id = parseInt(subcategory, 10);
-    }
-
+    // Получаем список товаров с учётом фильтров
     const products = await Product.findAll({
       where: whereClause,
       include: [
-        { model: ProductImage, attributes: ['id', 'image_url'] }, 
+        { model: ProductImage, attributes: ['id', 'image_url'] },
         { model: ProductDescription, attributes: ['description_text', 'description_order'] },
         {
           model: Category,
@@ -307,6 +395,7 @@ async function handleGetRequest(req, res) {
     return res.status(500).json({ message: 'Ошибка сервера', error: error.message });
   }
 }
+
 
 async function handlePostRequest(req, res) {
   const { name, description, price, category_id, status } = req.body;

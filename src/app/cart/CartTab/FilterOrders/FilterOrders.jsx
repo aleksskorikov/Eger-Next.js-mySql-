@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import styles from './_orderPeriodFilter.module.scss';
+import styles from '../../../admin/Orders/ordersComponents/OrderPeriodFilter/_orderPeriodFilter.module.scss';
 import {
     startOfDay,
     startOfWeek,
@@ -73,7 +73,7 @@ const OrderPeriodFilter = ({ orders = [], onFiltered }) => {
         const filtered = !from
             ? orders
             : orders.filter(order => {
-                const date = new Date(order.completed_at);
+                const date = new Date(order.created_at);
                 
                 return isAfter(date, from) && isBefore(date, to);
             });
@@ -127,7 +127,3 @@ const OrderPeriodFilter = ({ orders = [], onFiltered }) => {
 };
 
 export default OrderPeriodFilter;
-
-
-
-

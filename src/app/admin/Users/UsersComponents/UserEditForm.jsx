@@ -42,7 +42,8 @@ const UserEditForm = ({ user, onSave, onCancel }) => {
         <input name="phone" value={formData.phone || ''} onChange={handleChange} placeholder="Телефон" />
         <input name="email" type="email" value={formData.email || ''} onChange={handleChange} placeholder="Email"/>    
         <input name="city" value={formData.city || ''} onChange={handleChange} placeholder="Місто" />
-    
+        <input name="discount" value={formData.discount || ''} onChange={handleChange} placeholder="Дісконт" />
+
         <div>
             <button type="submit" disabled={saving}>💾 Зберегти</button>
             <button type="button" onClick={onCancel}>Скасувати</button>

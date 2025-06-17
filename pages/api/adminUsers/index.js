@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
             case 'PUT':
                 try {
-                    const { id, first_name, last_name, phone, city, role, middle_name, email } = req.body;
+                    const { id, first_name, last_name, phone, city, role, middle_name, email, discount } = req.body;
             
                     if (!id) {
                     return res.status(400).json({ error: 'Не вказано ID' });
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
                     return res.status(404).json({ error: 'Користувача не знайдено' });
                     }
             
-                    await user.update({ first_name, last_name, phone, city, role, middle_name, email });
+                    await user.update({ first_name, last_name, phone, city, role, middle_name, email, discount });
             
                     return res.status(200).json(user);
                 } catch (error) {

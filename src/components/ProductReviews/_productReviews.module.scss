@@ -1,0 +1,178 @@
+@use '../../styles/scss/changeable.module.scss' as *;
+@use '../../styles/scss/mixins.module.scss' as *;
+@use "../../styles/scss/templates.module.scss" as *;
+
+
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem;
+}
+
+
+.ratingWrapper {
+    max-width: 80%;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 3px solid $form-bg;
+    border-radius: 10px;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
+}
+
+.reviewForm {
+    margin-bottom: 20px;
+}
+
+.reviewItem {
+    border-bottom: 1px solid #b1aeae;
+    padding: 10px;
+    border: 2px solid $form-bg;
+    border-radius: 8px;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
+    margin: 1rem 0;
+}
+
+.nameBlock{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.reviewName{
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.text{
+    font-size: 16px;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid green;
+    border-radius: 8px;
+    background-color: #fbfbfb;
+}
+
+.textarea {
+    width: 100%;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+}
+
+.btnGroup {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+.btnPrimary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+}
+
+.btnSecondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #5a6268;
+    }
+}
+
+.btnDanger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #bd2130;
+    }
+}
+
+.chatWrapper {
+    margin-left:10px 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
+}
+
+.chatMessage {
+    margin-bottom: 5px;
+
+    b {
+        font-weight: 700;
+    }
+
+    small {
+        display: block;
+        color: #666;
+        font-size: 0.75rem;
+        margin-top: 2px;
+    }
+}
+
+.btnDeleteMessage {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0;
+    text-decoration: underline;
+
+    &:hover {
+        color: #a71d2a;
+    }
+}
+
+.newMessageForm {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.manageButtons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.count {
+    font-weight: 600;
+    color: #007bff;
+}

@@ -4,12 +4,7 @@ import styles from './_productCard.module.scss';
 import ImgAlt from "../../../public/images/hanter-foto/imgAlt.jpg"
 
 const ProductCard = ({ product}) => {
-    const imageUrl = product.ProductImages?.[0]?.image_url || ImgAlt;
-    const description = product.ProductDescriptions
-        ?.sort((a, b) => a.description_order - b.description_order)
-        ?.map(d => d.description_text)
-        ?.join(', ');
-
+    const imageUrl = product.ProductImages?.[0]?.image_url || ImgAlt.src;
     return (
         <Link href={`/product/${product.id}`} className={styles.card}>
             <div className={styles.cardImgWrapper}>
@@ -22,17 +17,20 @@ const ProductCard = ({ product}) => {
                     priority
                 />
             </div>
-            <h3 className={styles.productName}>{product.name}</h3>
-            <p className={styles.productPrice}>
-                {product.isOnSale && product.sale_price ? (
-                    <>
-                    <span className={styles.salePrice}>🔥Ціна по акції: {product.sale_price} грн</span>{' '}
-                    <span className={styles.originalPrice}><s>{product.price} грн</s></span>
-                    </>
-                ) : (
-                    <>Цена: {product.price} грн</>
-                )}
-            </p>
+            <div className={styles.cardContent}>
+                <h3 className={styles.productName}>{product.name}</h3>
+                <p className={styles.productPrice}>
+                    {product.isOnSale && product.sale_price ? (
+                        <>
+                        <span className={styles.salePrice}>🔥Ціна по акції: {product.sale_price} грн</span>{' '}
+                        <span className={styles.originalPrice}><s>{product.price} грн</s></span>
+                        </>
+                    ) : (
+                        <>Цена: {product.price} грн</>
+                    )}
+                </p>
+            </div>
+
         </Link>
     );
 };

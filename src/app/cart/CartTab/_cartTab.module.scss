@@ -2,31 +2,8 @@
 @use '../../../styles/scss/mixins.module.scss' as *;
 @use "../../../styles/scss/templates.module.scss" as *;
 
-.main {
-    background-color: $colorbg-body;
-    background-color: $colorbg-body;
-    position: relative;
-    z-index: 1;
-    flex: 1 1 auto;
-    overflow: hidden;
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: url(../../../../public//logo/fon.png);
-        background-position: center 30%;
-        background-size: 22%;
-        opacity: 0.05;
-        z-index: -1;
-    }
-}
-
 .title{
-    text-align: center;
-    margin: 1rem 0 2rem;
-    font-size: 2rem;
-    font-weight: bold;
+    @extend %cartTitle;
 }
 
 .subTitle{
@@ -51,17 +28,20 @@
     padding: 1rem 2rem;
     border: 3px solid $form-bg;
     border-radius: 10px;
+    background-color: #f5ec9d;
+    box-shadow: 3px 3px 30px $title-text-shadow;
 }
 
 .cartProduct{
     border: 1.5px solid $form-bg;
     border-radius: 10px;
     padding: 10px;
+    background-color: #e9e6b2e4;
 }
 
 .productTitle{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }

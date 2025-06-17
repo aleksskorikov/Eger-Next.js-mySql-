@@ -10,7 +10,11 @@ import BackToMenuBtn from "../../../components/btns/BackTuMenuBtn/backTuMenuBtn"
 import BuyBtn from "../../../components/btns/BuyBtn/buyBtn";
 import useFetchProduct from "../../Hooks/useFetchProducts";
 import useAuthUser from "../../../../pages/api/users/useAuthUser";
-import imgAlt from "../../../../public/images/hanter-foto/imgAlt.jpg"
+import imgAlt from "../../../../public/images/hanter-foto/imgAlt.jpg";
+import AddToFavoritesBtn from "../../../components/btns/AddToFavoritesBtn/AddToFavoritesBtn";
+import ProductRating from "../../../components/ProductRating/ProductRating";
+import ProductReviews from "../../../components/ProductReviews/ProductReviews";
+
 
 const Product = () => {
     const { id } = useParams();
@@ -70,14 +74,11 @@ const Product = () => {
         <>
             <div className={styles.container}>
                 <BackToMenuBtn />
-                
                 <div className={styles.productCard}>
-
                     <h2 className={styles.productsName}>{product.name}</h2>
                     <p className={styles.description}>
                         {product.description || "Немає опису для цього товару"}
                     </p>
-
                     <div className={styles.cartBlock}>
                         {images.length > 0 ? (
                         <Slider key={images.join()} {...settings} className={styles.productSlider}>
@@ -104,7 +105,6 @@ const Product = () => {
                             />
                         </div>
                     )}
-
                     <div className={styles.cardDesckription}>
                         <div className={styles.productsDescription}>
                             {product.ProductDescriptions?.length > 0 && (
@@ -119,7 +119,21 @@ const Product = () => {
                         </div>
                     </div>
                     </div>
-                    <p className={styles.productsArticle}>Артикул: # {product.article}</p>
+                    <div className={styles.ratingBlock}>
+                        <p className={styles.productsArticle}>Артикул: # {product.article}</p>  
+                        <AddToFavoritesBtn product={{
+                        id: product.id,
+                        title: product.name,
+                        description: product.description,
+                        price: product.sale_price ?? product.price
+                    }}
+                    />
+                        <ProductRating productId={product.id} />
+                    </div>
+                    
+                    <div>
+                        <ProductReviews productId={id} />
+                    </div>
                     <p className={styles.productPrice}>
                         {product.isOnSale && product.sale_price ? (
                             <>
@@ -130,7 +144,9 @@ const Product = () => {
                             <>Цена: {product.price} грн</>
                         )}
                     </p>
+                    
                 </div>
+                
                 
                 {user ? (
                     product.status === false ? (

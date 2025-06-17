@@ -1,5 +1,6 @@
 import { Cart } from '../../../models/user';
 import { Product } from "../../../models/product";
+import { User } from '../../../models/user';
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -9,8 +10,13 @@ export default async function handler(req, res) {
       const { user_id } = req.query;
 
       if (!user_id) {
-        console.warn('Ошибка: Не передан user_id');
         return res.status(401).json({ message: "Не авторизован" });
+      }
+
+      const user = await User.findByPk(user_id);
+
+      if (!user) {
+        return res.status(404).json({ message: "Пользователь не найден" });
       }
 
       const items = await Cart.findAll({
@@ -18,16 +24,31 @@ export default async function handler(req, res) {
         include: [{ model: Product }],
       });
 
-      if (!items || items.length === 0) {
-        console.warn(`Корзина пустая для пользователя с ID: ${user_id}`);
-        return res.status(200).json({ items: [] });
-      }
-      res.status(200).json({ items });
+      const itemsWithDiscounts = items.map(item => {
+        const product = item.Product;
+        const basePrice = product.isOnSale && product.sale_price != null ? product.sale_price : product.price;
+        const clientDiscountPercent = user.discount / 100;
+        const clientDiscountAmount = !product.isOnSale ? basePrice * clientDiscountPercent : 0;
+        const finalPrice = product.isOnSale ? basePrice : basePrice - clientDiscountAmount;
+      
+        return {
+          ...item.toJSON(),
+          product: product.toJSON(),
+          discount: product.isOnSale ? 'Товар по акции' : `${user.discount}%`,
+          discountAmount: product.isOnSale ? (product.price - product.sale_price) : clientDiscountAmount,
+          priceBeforeDiscount: product.price,
+          priceAfterDiscount: finalPrice,
+        };
+      });
+      ;
+      res.status(200).json({ items: itemsWithDiscounts, clientDiscount: user.discount });
     } catch (error) {
       console.error('Ошибка при получении корзины:', error.message);
       res.status(500).json({ message: "Ошибка сервера", error: error.message });
     }
-  } else if (method === 'POST') {
+  }
+  
+  else if (method === 'POST') {
     try {
       const { user_id, product_id, quantity} = req.body;
       if (!user_id || !product_id) {

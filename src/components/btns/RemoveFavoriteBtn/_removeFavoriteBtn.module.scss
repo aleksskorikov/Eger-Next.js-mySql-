@@ -1,0 +1,22 @@
+@use '../../../styles/scss/changeable.module.scss' as *;
+@use '../../../styles/scss/mixins.module.scss' as *;
+@use "../../../styles/scss/templates.module.scss" as *;
+
+
+.removeBtn {
+    position: relative;
+    z-index: 10;
+    width: 8rem;
+    height: 2rem;
+    transform: skew(-20deg);
+    background: red;
+    border-radius: 8px;
+    color: $whitesmoke;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+
+    &:hover {
+        background: $editable-btn-cancellation-hover;
+    }
+}

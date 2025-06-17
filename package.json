@@ -32,7 +32,8 @@
     "sass": "^1.87.0",
     "sequelize": "^6.37.7",
     "sequelize-cli": "^6.6.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
