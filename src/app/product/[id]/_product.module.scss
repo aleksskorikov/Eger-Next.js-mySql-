@@ -184,7 +184,12 @@
     .productSlider {
         width: 50%;
     }
+}
 
+@media (max-width: 1025px){
+    .slickNext {
+        right: -8%;
+    }
 }
 
 @media (max-width: 913px) {
@@ -201,7 +206,7 @@
 
     .productSlider {
         margin: 1rem auto 1rem;
-        width: 100%;
+        width: 80%;
     }
     .productSliderItem {
         height: 300px;
@@ -213,5 +218,11 @@
 
     .ratingBlock {
         flex-direction: column; 
+    }
+}
+
+@media (max-width: 440px){
+    .productSlider {
+        width: 100%;
     }
 }

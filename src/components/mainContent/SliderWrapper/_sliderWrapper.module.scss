@@ -40,13 +40,18 @@
     }
 }
 
+@media (max-width: 440px){
+    .slider {
+        padding: 0 0;
+    }
+}
+
 @media (max-width: 912px) {
     .slider{
         ul {
-        bottom: -5px;
+            bottom: -5px;
+        }
     }
-    }
-    
 }
 
 

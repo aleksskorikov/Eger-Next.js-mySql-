@@ -9,6 +9,7 @@ import Pagination from '../../../components/Pagination/page.jsx';
 import styles from '../_productPages.module.scss';
 import useFilteredPaginatedProducts from '../../Hooks/useFilteredPaginatedProducts.jsx';
 import PagesTop from '../../../components/PagesTop/pagesTop';
+import Loader from '../../../components/Loader/Loader';
 
 import MenuImg from '../../../../public/images/menu img/closAll.jpg';
 import MenuImg1 from '../../../../public/images/menu img/clos.jpg';
@@ -76,7 +77,7 @@ const {
 
 
 
-    if (loading) return <div>Завантаження товарів...</div>;
+    if (loading) return <Loader/>;
     if (error) return <div>Помилка при завантаженні товарів: {error.message}</div>;
 
     return (

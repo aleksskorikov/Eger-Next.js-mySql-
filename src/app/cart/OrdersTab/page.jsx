@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import useAuthUser from '../../../../pages/api/users/useAuthUser';
 import styles from './_orders.module.scss';
-import FilterOrders from "../CartTab/FilterOrders/FilterOrders"
+import FilterOrders from "../CartTab/FilterOrders/FilterOrders";
+import Loader from '../../../components/Loader/Loader';
 
 const OrdersTab = () => {
   const [orders, setOrders] = useState([]);
@@ -46,7 +47,7 @@ const OrdersTab = () => {
     }
   }, [userLoaded, user]);
 
-  if (loading || !userLoaded) return <p className={styles.loading}>Завантаження...</p>;
+  if (loading || !userLoaded) return <Loader/>;
 
   return (
     <div className={styles.ordersWrapper}>

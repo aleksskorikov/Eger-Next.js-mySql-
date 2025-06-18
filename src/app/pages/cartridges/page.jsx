@@ -9,6 +9,7 @@ import styles from '../_productPages.module.scss';
 import useFetchProducts from '../../Hooks/useFetchProducts';
 import useFilteredPaginatedProducts from '../../Hooks/useFilteredPaginatedProducts';
 import PagesTop from '../../../components/PagesTop/pagesTop'; 
+import Loader from '../../../components/Loader/Loader';
 
 import MenuImg from '../../../../public/images/menu img/patrons.jpg';
 import MenuImg1 from '../../../../public/images/menu img/patrons1.jpg';
@@ -47,7 +48,7 @@ const Cartridges = () => {
         handlePageChange('reset');
     }, [activeMenuOne]);
 
-    if (loading) return <div>Завантаження товарів...</div>;
+    if (loading) return <Loader/>;
     if (error) return <div>Помилка при завантаженні товарів: {error.message}</div>;
 
 

@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './_productCard.module.scss';
-import ImgAlt from "../../../public/images/hanter-foto/imgAlt.jpg"
+import ImgAlt from "../../../public/images/imgAlt.jpg"
 
 const ProductCard = ({ product}) => {
-    const imageUrl = product.ProductImages?.[0]?.image_url || ImgAlt.src;
+    const imageUrl = product.ProductImages?.[0]?.image_url || ImgAlt;
     return (
         <Link href={`/product/${product.id}`} className={styles.card}>
             <div className={styles.cardImgWrapper}>

@@ -10,14 +10,26 @@ import ContinueShoppingButton from './CartTab/ContinueShoppingButton.jsx';
 import CartCounterBadge from './CartCounterBadge/CartCounterBadge.jsx';
 import Favorites from './Favorites/Favorites.jsx';
 import AboutMe from './AboutMe/AboutMe.jsx';
+import Image from "next/image";
+import Loader from '../../components/Loader/Loader.jsx';
 
 const CartPage = () => {
   const { user } = useAuth();
   const { items, loading, removeItem } = useCartItems();
   const [activeTab, setActiveTab] = useState('cart');
 
-  if (!user) return <div>Будь ласка, увійдіть, щоб переглянути сторінку.</div>;
-  if (loading) return <div>Завантаження...</div>;
+  if (!user) return <div className={styles.plugBlock}>
+    <p className={styles.plugText}>Будь ласка, увійдіть, щоб переглянути сторінку.</p> 
+    <Image
+      src='/images/plug .png'
+      alt="Login required"
+      width={200}      
+      height={200}      
+      layout="responsive"
+    />
+  </div>;
+  if (loading) return <Loader />
+
 
   return (
     <div className={styles.tabsContainer}>

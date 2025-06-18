@@ -33,6 +33,7 @@
 
 .footerBlockSety {
     margin: 1rem 0;
+    font-family: $fontfamily-data;
 }
 
 .blockSetyTitle {
@@ -78,6 +79,8 @@
 }
 
 .footerBodyAdress {
+    font-family: $fontfamily-data;
+    margin-top: 0.5rem;
     @include adaptiv-font(32, 16);
 
     Link {

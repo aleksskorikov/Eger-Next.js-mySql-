@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     perspective: 62.5rem;
-    margin: 2rem 2rem 2rem 2.5rem;
+    margin: 2rem 2rem 2rem 2rem;
     cursor: pointer;
 
     .front,
@@ -74,7 +74,7 @@
         }
 
         ul {
-            padding-left: 2rem;
+            padding-left: 4rem;
         }
 
         li {
@@ -98,5 +98,14 @@
 
     &:hover .back {
         transform: rotateY(360deg);
+    }
+}
+
+@media (max-width: 440px) {
+    .menu{
+        .front,
+        .back {
+            box-shadow: 5px 5px 10px $card-shadow;
+        }
     }
 }

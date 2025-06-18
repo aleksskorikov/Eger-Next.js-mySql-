@@ -41,9 +41,9 @@
 
 .productTitle{
     text-align: center;
-    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    @include adaptiv-font(45, 24);
 }
 
 .productItemsBlock{

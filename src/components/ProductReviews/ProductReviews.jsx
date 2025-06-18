@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import useAuthUser from '../../../pages/api/users/useAuthUser.js';
-
 import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewsCount from './ReviewsCount.jsx';
-
 import styles from './_productReviews.module.scss';
+import Loader from '../Loader/Loader.jsx';
 
 export default function ProductReviews({ productId }) {
     const user = useAuthUser();
@@ -69,7 +68,7 @@ export default function ProductReviews({ productId }) {
                         />
                     )}
                     {loading ? (
-                        <p>Завантаження відгуків...</p>
+                        <Loader/>
                     ) : (
                         <>
                             <ReviewList

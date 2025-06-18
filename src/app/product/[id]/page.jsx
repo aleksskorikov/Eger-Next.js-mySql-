@@ -10,10 +10,11 @@ import BackToMenuBtn from "../../../components/btns/BackTuMenuBtn/backTuMenuBtn"
 import BuyBtn from "../../../components/btns/BuyBtn/buyBtn";
 import useFetchProduct from "../../Hooks/useFetchProducts";
 import useAuthUser from "../../../../pages/api/users/useAuthUser";
-import imgAlt from "../../../../public/images/hanter-foto/imgAlt.jpg";
+import imgAlt from "../../../../public/images/imgAlt.jpg";
 import AddToFavoritesBtn from "../../../components/btns/AddToFavoritesBtn/AddToFavoritesBtn";
 import ProductRating from "../../../components/ProductRating/ProductRating";
 import ProductReviews from "../../../components/ProductReviews/ProductReviews";
+import Loader from '../../../components/Loader/Loader';
 
 
 const Product = () => {
@@ -21,7 +22,7 @@ const Product = () => {
     const { product, error, loading } = useFetchProduct(id);
     const user = useAuthUser();
 
-    if (loading) return <div>Завантаження...</div>;
+    if (loading) return <Loader/>;
     if (error) return <div>Сталася помилка при завантаженні товару.</div>;
     if (!product) return <div>Товар не знайдено</div>;
 
@@ -90,7 +91,7 @@ const Product = () => {
                                         className={styles.productSliderImage}
                                         onError={(e) => {
                                             e.target.onerror = null;
-                                            e.target.src = '/images/hanter-foto/imgAlt.jpg'; 
+                                            e.target.src = '/images/imgAlt.jpg'; 
                                         }}
                                     />
                                 </div>
@@ -99,7 +100,7 @@ const Product = () => {
                     ) : (
                         <div className={styles.productSliderItem}>
                             <img
-                                src="/images/hanter-foto/imgAlt.jpg"
+                                src="/images/imgAlt.jpg"
                                 alt="Нет изображения"
                                 className={styles.productSliderImage}
                             />

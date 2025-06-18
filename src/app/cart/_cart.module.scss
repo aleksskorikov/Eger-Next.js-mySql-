@@ -9,8 +9,10 @@
 
 .cartBtns{
     display: flex;
+    flex-wrap: wrap;
     background-color: #e7d49e;
     width: 100%;
+    padding: 0 10px;
 }
 
 .cartBtn{
@@ -20,6 +22,7 @@
 .tabButton {
     font-size: 20px;
     @extend %tabButton;
+    margin-right: 5px;
 }
 
 .tabButton:hover {
@@ -45,4 +48,32 @@
 
 .myBadgeWrapper{
     margin: -5px 0 0px 2px;
+}
+
+.plugBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 90%;
+    margin: 2rem auto 2rem;
+}
+
+.plugText{
+    font-weight: bold;
+    @include adaptiv-font(32, 24);
+}
+
+
+
+@media (max-width: 550px){
+    .tabButton {
+        justify-content: center;
+        width: 90%;
+        margin-top: 5px;   
+    }
+    .cartBtns {
+        justify-content: center;  
+    }
 }

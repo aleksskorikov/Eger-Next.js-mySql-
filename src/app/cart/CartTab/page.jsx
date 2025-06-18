@@ -5,6 +5,7 @@ import styles from "./_cartTab.module.scss";
 import OrderForm from '../OrderForm/OrderForm.jsx';
 import useAuthUser from '../../../../pages/api/users/useAuthUser.js';
 import PriceChangeModal from './PriceChangeModal/PriceChangeModal';
+import Loader from '../../../components/Loader/Loader';
 
 const CartTab = ({ removeItem }) => {
     const [showForm, setShowForm] = useState(false);
@@ -219,7 +220,7 @@ const CartTab = ({ removeItem }) => {
     };
 
     if (loading) {
-        return <p>Загрузка...</p>;
+        return <Loader/>;
     }
 
     return (

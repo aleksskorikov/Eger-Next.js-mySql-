@@ -5,6 +5,7 @@ import styles from './_favorites.module.scss';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import BuyBtn from '../../../components/btns/BuyBtn/buyBtn';
 import RemoveFavoriteBtn from '../../../components/btns/RemoveFavoriteBtn/RemoveFavoriteBtn';
+import Loader from '../../../components/Loader/Loader';
 
 
 const Favorites = () => {
@@ -35,9 +36,6 @@ const Favorites = () => {
       .finally(() => setLoading(false));
   }, [favoritesIds]);
 
-  // const handleRemove = (productId) => {
-  //   setFavoritesIds(prev => prev.filter(id => id !== productId));
-  // };
   const handleRemove = (productId) => {
     setRemovingIds(prev => [...prev, productId]);
 
@@ -52,7 +50,7 @@ const Favorites = () => {
   };
 
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return <Loader/>;
 
   return (
     <div className={styles.container}>

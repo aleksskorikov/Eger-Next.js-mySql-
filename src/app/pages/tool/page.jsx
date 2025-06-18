@@ -8,6 +8,7 @@ import styles from '../_productPages.module.scss';
 import Pagination from '../../../components/Pagination/page.jsx'; 
 import useFilteredPaginatedProducts from '../../Hooks/useFilteredPaginatedProducts'; 
 import PagesTop from '../../../components/PagesTop/pagesTop';
+import Loader from '../../../components/Loader/Loader';
 
 import MenuImg from "../../../../public/images/menu img/tool.jpg";
 import MenuImg1 from "../../../../public/images/menu img/tool1.jpg";
@@ -48,7 +49,7 @@ const Tool = () => {
         handlePageChange('reset');
     }, [activeMenuOne]);
 
-    if (loading) return <div>Завантаження товарів...</div>;
+    if (loading) return <Loader/>;
     if (error) return <div>Помилка при завантаженні товарів: {error.message}</div>;
 
     const asideMenuItems = [

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import useAuthUser from '../../../../pages/api/users/useAuthUser';
 import styles from './_aboutMe.module.scss';
+import Loader from '../../../components/Loader/Loader';
 
 const AboutMe = () => {
     const authUser = useAuthUser();
@@ -53,7 +54,7 @@ const AboutMe = () => {
     };
 
     if (!authUser) return <div className={styles.loader}>🙅‍♂️ Ви не авторизовані</div>;
-    if (!userData) return <div className={styles.loader}>⏳ Завантаження...</div>;
+    if (!userData) return <Loader/>;
 
     return (
         <div className={styles.container}>
